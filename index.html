@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oráculo de Conselhos - Roteiro 08</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        #textoConselho { font-style: italic; color: #555; margin-top: 20px; min-height: 1.2em; }
+        button { padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h3>Atividade 1: O Oráculo de Conselhos</h3>
+    <!-- Elementos solicitados no Roteiro 08 -->
+    <button id="btnConselho">Pedir Conselho</button>
+    <p id="textoConselho"></p>
+
+    <script>
+        // Seleção dos elementos do DOM
+        const btn = document.getElementById("btnConselho");
+        const display = document.getElementById("textoConselho");
+
+        // Evento de clique para disparar a Fetch API[cite: 1]
+        btn.addEventListener("click", () => {
+            display.innerText = "Consultando o oráculo...";
+
+            // 1. Fetch: Faz o pedido à API de conselhos[cite: 1]
+            fetch("https://api.adviceslip.com/advice")
+                .then(res => res.json()) // 2. json(): Transforma o pedido bruto em objeto JS[cite: 1]
+                .then(dados => {
+                    const conselhoIngles = dados.slip.advice;
+
+                    // 3. Tradução: Enviando o conselho para uma API de tradução gratuita
+                    return fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(conselhoIngles)}&langpair=en|pt-BR`);
+                })
+                .then(resTrad => resTrad.json())
+                .then(dadosTrad => {
+                    // 4. Exibição: Mostra o conselho traduzido na tela[cite: 1]
+                    display.innerText = dadosTrad.responseData.translatedText;
+                })
+                .catch(erro => {
+                    console.error("Erro na requisição:", erro);
+                    display.innerText = "O oráculo está em silêncio no momento. Tente novamente.";
+                });
+        });
+    </script>
+
+</body>
+</html>
