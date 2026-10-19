@@ -202,8 +202,8 @@ h3 { font-size: var(--t-2); }
 .reel figcaption { margin-top: 10px; font-size: var(--t-5); font-weight: 500; color: var(--muted); }
 .reel-dots { display: none; justify-content: center; gap: 4px; margin-top: 4px; }
 .reel-dots button { width: 44px; height: 44px; padding: 0; background: none; border: 0; cursor: pointer; position: relative; }
-.reel-dots button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--tone); transition: background-color .2s, width .2s, margin .2s; }
-.reel-dots button[aria-current]::after { width: 28px; margin-left: -14px; border-radius: 5px; background: var(--green); }
+.reel-dots button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; background: var(--tone); transition: background-color .2s, width .2s, margin .2s; }
+.reel-dots button[aria-current]::after { width: 28px; margin-left: -14px; background: var(--green); }
 .head-copy { grid-column: 1 / span 7; }
 .head-copy .lead { margin-top: 20px; max-width: 34ch; }
 
