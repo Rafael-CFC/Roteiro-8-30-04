@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T12:00:00Z",
+  "title": "Design System: Casas Eco",
+  "extensions": {
+    "colorMeta": {
+      "white": { "role": "neutral", "displayName": "White", "canonical": "#FFFFFF", "cssVar": "--bg", "tonalRamp": ["#262626", "#424242", "#5E5E5E", "#7A7A7A", "#999999", "#B8B8B8", "#D6D6D6", "#F2F2F2"] },
+      "pale-leaf": { "role": "neutral", "displayName": "Pale Leaf", "canonical": "#EEF5EA", "cssVar": "--bg-alt", "tonalRamp": ["#233419", "#3C5A2B", "#55803D", "#6FA64F", "#8FBD75", "#B1D19E", "#D2E5C8", "#F1F7EE"] },
+      "leaf-tone": { "role": "neutral", "displayName": "Leaf Tone", "canonical": "#DDEBD6", "cssVar": "--tone", "tonalRamp": ["#223319", "#3B592B", "#547F3E", "#6CA550", "#8DBC76", "#AFD09F", "#D2E4C8", "#F1F7EE"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#17260F", "cssVar": "--ink", "tonalRamp": ["#213716", "#3A5F26", "#528735", "#6AB045", "#8CC56D", "#AED799", "#D1E8C4", "#F1F8ED"] },
+      "moss-muted": { "role": "neutral", "displayName": "Moss Muted", "canonical": "#3F5536", "cssVar": "--muted", "tonalRamp": ["#232F1E", "#3C5134", "#567349", "#6F965F", "#8FB082", "#B1C8A8", "#D2DFCD", "#F1F5EF"] },
+      "leaf-green": { "role": "primary", "displayName": "Leaf Green", "canonical": "#2D7A28", "cssVar": "--green", "tonalRamp": ["#153A13", "#256421", "#348E2F", "#44B83C", "#6CCD65", "#98DC93", "#C4EBC2", "#EDF9EC"] },
+      "leaf-green-deep": { "role": "primary", "displayName": "Deep Leaf", "canonical": "#22601F", "cssVar": "--green-hover", "tonalRamp": ["#143A13", "#236420", "#338F2E", "#42B93C", "#6ACD65", "#96DC93", "#C3EBC1", "#ECF9EC"] },
+      "forest-panel": { "role": "secondary", "displayName": "Forest Panel", "canonical": "#1F4A1C", "cssVar": "--panel", "tonalRamp": ["#173815", "#286024", "#398934", "#4AB243", "#71C76B", "#9CD897", "#C6E9C4", "#EDF8EC"] },
+      "panel-muted": { "role": "neutral", "displayName": "Panel Muted", "canonical": "#C9DEC0", "cssVar": "--on-panel-muted", "tonalRamp": ["#21321A", "#3A572E", "#537C41", "#6BA154", "#8CB979", "#AFCEA1", "#D1E3C9", "#F1F6EE"] },
+      "light-leaf": { "role": "secondary", "displayName": "Light Leaf", "canonical": "#9BD27A", "cssVar": "--leaf", "tonalRamp": ["#223913", "#3A6322", "#538D30", "#6BB73E", "#8CCB67", "#AFDB94", "#D1EAC2", "#F1F9EC"] },
+      "error": { "role": "semantic", "displayName": "Error", "canonical": "#A12A1B", "cssVar": "--error", "purpose": "Form field error text and border only; never an action or decoration." }
+    },
+    "typographyMeta": {
+      "numeral": { "displayName": "Numeral", "purpose": "Experience figures only; 62% width, tabular, the plus sign in light leaf." },
+      "display": { "displayName": "Display", "purpose": "The hero tagline only; 64% width." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles (h2); 70% width, balanced wrap." },
+      "title": { "displayName": "Title", "purpose": "Project names, project data values, system tabs, WhatsApp number." },
+      "lead": { "displayName": "Lead", "purpose": "Supporting line under a heading, about 30 to 34ch." },
+      "body": { "displayName": "Body", "purpose": "Reading text at normal width, capped at 62ch." },
+      "label": { "displayName": "Label", "purpose": "Buttons, chips, captions, data terms, nav links, notes (15px)." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(.23, 1, .32, 1)", "purpose": "Shared ease-out for entrances, lifts, presses, image zoom and the wall assembly." },
+      { "name": "press", "value": "scale(.97) on :active, transform .16s", "purpose": "Every pressable control (buttons, chips, tabs, play, copy, lightbox controls) answers the press." },
+      { "name": "hover-gate", "value": "@media (hover: hover) and (pointer: fine)", "purpose": "Hover lifts and zooms run only with a mouse, so taps never leave a stuck hover." },
+      { "name": "keyboard-still", "value": "no animation for keyboard-initiated changes", "purpose": "Arrow keys on tabs, wall chips and the lightbox switch instantly." },
+      { "name": "state", "value": ".2s", "purpose": "Color and lift transitions on buttons, chips, tabs, fields." },
+      { "name": "rise", "value": "translateY(26px) to none, opacity 0 to 1, .9s, staggered .1s", "purpose": "Hero text entrance." },
+      { "name": "settle", "value": "scale(1.09) to none, 1.8s", "purpose": "Hero photo settle on load." },
+      { "name": "slide", "value": "translateY(32px) to none, view() timeline, entry 0% to 45%", "purpose": "Section parts rise on scroll where scroll timelines are supported." },
+      { "name": "wall-assembly", "value": "kept layer translateX to none 260ms; new layers translateX(-28px) and opacity to none 300ms, staggered 70ms, cubic-bezier(.23, 1, .32, 1)", "purpose": "The wall cross-section is built from outside to inside when its type changes." },
+      { "name": "feedback-flash", "value": "background --tone to --bg-alt, 300ms ease-out", "purpose": "Quote preview box confirms each chosen option." },
+      { "name": "menu-drop", "value": "clip-path inset(0 0 100% 0) to inset(0), .22s", "purpose": "Phone menu opens top-down." },
+      { "name": "reduced-motion", "value": "entrance, settle, slide, menu drop and hover lifts off; color and opacity transitions kept", "purpose": "Travel removed under prefers-reduced-motion, state feedback kept." }
+    ],
+    "breakpoints": [
+      { "name": "nav-collapse", "value": "1000px" },
+      { "name": "stack", "value": "860px" },
+      { "name": "quotes-stack", "value": "640px" },
+      { "name": "small-phone", "value": "480px" }
+    ],
+    "shapes": [
+      { "name": "roof-cut", "value": "clip-path: polygon(0 var(--cut-y), 100% 0, 100% 100%, 0 100%); --cut-y: clamp(28px, 4.6vw, 68px)", "purpose": "Sloped top edge on panel bands that overlap the band above." },
+      { "name": "hero-cut", "value": "clip-path: polygon(var(--cut-x) 0, 100% 0, 100% 100%, 0 100%); --cut-x: clamp(48px, 7vw, 112px)", "purpose": "Diagonal left edge of the hero photo at desktop; a sloped bottom edge on phones." }
+    ],
+    "focus": [
+      { "name": "focus-ring", "value": "outline: 3px solid #2D7A28; outline-offset: 3px", "purpose": "Every focusable element; light leaf (#9BD27A) on forest panels." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "The one filled action on light ground: square, leaf green, lifts on hover.",
+      "html": "<a class=\"ds-btn ds-btn-solid\" href=\"#\">Ver as obras</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 15px 26px; font: 600 1rem/1 Archivo, 'Arial Narrow', Arial, sans-serif; border: 2px solid transparent; border-radius: 0; text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s, transform .2s cubic-bezier(.2,.7,.2,1); } .ds-btn-solid { background: var(--green, #2D7A28); color: #FFFFFF; } .ds-btn-solid:hover { background: var(--green-hover, #22601F); transform: translateY(-2px); } .ds-btn-solid:active { transform: translateY(0) scale(.98); } .ds-btn-solid:focus-visible { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action: 2px current-color outline that fills ink on hover.",
+      "html": "<a class=\"ds-btn-line\" href=\"#\">Ver mais obras</a>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 15px 26px; font: 600 1rem/1 Archivo, 'Arial Narrow', Arial, sans-serif; color: var(--ink, #17260F); background: transparent; border: 2px solid currentColor; border-radius: 0; text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s, transform .2s cubic-bezier(.2,.7,.2,1); } .ds-btn-line:hover { background: var(--ink, #17260F); color: #FFFFFF; border-color: var(--ink, #17260F); transform: translateY(-2px); } .ds-btn-line:focus-visible { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; }"
+    },
+    {
+      "name": "Panel Buttons",
+      "kind": "button",
+      "refersTo": "button-solid-on-panel",
+      "description": "On forest panels the solid action turns light leaf and the line button turns white on hover.",
+      "html": "<div class=\"ds-panel\"><a class=\"ds-pbtn ds-pbtn-solid\" href=\"#\">Chamar no WhatsApp</a><a class=\"ds-pbtn ds-pbtn-line\" href=\"#\">Ver obras</a></div>",
+      "css": ".ds-panel { display: flex; flex-wrap: wrap; gap: 12px; padding: 32px; background: var(--panel, #1F4A1C); color: #FFFFFF; } .ds-pbtn { display: inline-flex; align-items: center; min-height: 52px; padding: 15px 26px; font: 600 1rem/1 Archivo, 'Arial Narrow', Arial, sans-serif; border: 2px solid transparent; border-radius: 0; text-decoration: none; color: inherit; transition: background-color .2s, color .2s, border-color .2s, transform .2s cubic-bezier(.2,.7,.2,1); } .ds-pbtn-solid { background: var(--leaf, #9BD27A); color: var(--on-leaf, #17260F); } .ds-pbtn-line { border-color: currentColor; } .ds-pbtn:hover { background: #FFFFFF; color: var(--panel, #1F4A1C); border-color: #FFFFFF; transform: translateY(-2px); } .ds-pbtn:focus-visible { outline: 3px solid var(--leaf, #9BD27A); outline-offset: 3px; }"
+    },
+    {
+      "name": "Choice Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Square radio chips used by the wall cross-section and the quote builder.",
+      "html": "<fieldset class=\"ds-chips\"><label><input type=\"radio\" name=\"ds-w\" checked><span>Parede simples</span></label><label><input type=\"radio\" name=\"ds-w\"><span>Parede dupla com lã PET</span></label><label><input type=\"radio\" name=\"ds-w\"><span>Dupla com drywall</span></label></fieldset>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 8px; border: 0; margin: 0; padding: 0; } .ds-chips label { position: relative; cursor: pointer; } .ds-chips input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; } .ds-chips span { display: block; padding: 12px 16px; background: var(--bg-alt, #EEF5EA); color: var(--ink, #17260F); font: 600 15px/1.2 Archivo, 'Arial Narrow', Arial, sans-serif; transition: background-color .2s, color .2s, transform .2s cubic-bezier(.2,.7,.2,1); } .ds-chips label:hover span { transform: translateY(-2px); } .ds-chips input:checked + span { background: var(--green, #2D7A28); color: #FFFFFF; } .ds-chips input:focus-visible + span { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Square pale-leaf field; border turns leaf green and fill turns white on focus.",
+      "html": "<label class=\"ds-field\"><span>Onde fica o terreno</span><input type=\"text\" placeholder=\"Ex.: Praia do Rosa\"></label>",
+      "css": ".ds-field { display: grid; gap: 8px; font: 700 15px/1.3 Archivo, 'Arial Narrow', Arial, sans-serif; color: var(--ink, #17260F); } .ds-field input { width: 100%; min-height: 50px; padding: 0 14px; font: 400 17px Archivo, 'Arial Narrow', Arial, sans-serif; color: var(--ink, #17260F); caret-color: var(--green, #2D7A28); background: var(--bg-alt, #EEF5EA); border: 2px solid var(--bg-alt, #EEF5EA); border-radius: 0; transition: border-color .2s, background-color .2s; } .ds-field input::placeholder { color: var(--muted, #3F5536); opacity: .8; } .ds-field input:hover { border-color: var(--tone, #DDEBD6); } .ds-field input:focus { outline: none; border-color: var(--green, #2D7A28); background: #FFFFFF; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "White bar, muted label links with a leaf-green underline that grows from the left, compact WhatsApp button.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"true\">Quem somos</a><a href=\"#\">Sistemas</a><a href=\"#\">Projetos</a><a href=\"#\">Obras</a><a href=\"#\">Contato</a><a class=\"ds-nav-cta\" href=\"#\">WhatsApp</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 26px; padding: 0 24px; height: 68px; background: #FFFFFF; font-family: Archivo, 'Arial Narrow', Arial, sans-serif; } .ds-nav a { position: relative; padding: 6px 0; font-size: 15px; font-weight: 500; color: var(--muted, #3F5536); text-decoration: none; transition: color .2s; } .ds-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--green, #2D7A28); transform: scaleX(0); transform-origin: 0 50%; transition: transform .2s cubic-bezier(.23, 1, .32, 1); } .ds-nav a:hover, .ds-nav a[aria-current] { color: var(--ink, #17260F); } .ds-nav a:hover::after, .ds-nav a[aria-current]::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; } .ds-nav .ds-nav-cta { margin-left: auto; padding: 12px 20px; min-height: 46px; display: inline-flex; align-items: center; background: var(--green, #2D7A28); color: #FFFFFF; font-weight: 600; } .ds-nav .ds-nav-cta::after { display: none; } .ds-nav .ds-nav-cta:hover { background: var(--green-hover, #22601F); color: #FFFFFF; }"
+    },
+    {
+      "name": "System Tabs",
+      "kind": "custom",
+      "refersTo": "system-tab",
+      "description": "Large condensed tabs for the building systems; selected is white on leaf green.",
+      "html": "<div class=\"ds-sys\" role=\"tablist\"><button role=\"tab\" aria-selected=\"true\">Madeira</button><button role=\"tab\" aria-selected=\"false\">Alvenaria</button><button role=\"tab\" aria-selected=\"false\">Misto</button></div>",
+      "css": ".ds-sys { display: flex; flex-direction: column; gap: 6px; padding: 16px; background: var(--bg-alt, #EEF5EA); } .ds-sys button { text-align: left; padding: 16px 18px; background: transparent; border: 0; border-radius: 0; font: 800 2rem/1 Archivo, 'Arial Narrow', Arial, sans-serif; font-stretch: 70%; letter-spacing: -.012em; color: var(--muted, #3F5536); cursor: pointer; transition: background-color .2s, color .2s; } .ds-sys button:hover { color: var(--ink, #17260F); background: var(--tone, #DDEBD6); } .ds-sys button[aria-selected='true'] { color: #FFFFFF; background: var(--green, #2D7A28); } .ds-sys button:focus-visible { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; }"
+    },
+    {
+      "name": "Roof-Cut Panel with Numeral",
+      "kind": "card",
+      "refersTo": "forest-panel",
+      "description": "Signature: forest panel band with the sloped roof-angle top edge and a condensed 900 numeral.",
+      "html": "<section class=\"ds-cut\"><p class=\"ds-num\">150<span>+</span></p><p class=\"ds-what\">obras construídas na região</p></section>",
+      "css": ".ds-cut { --cut-y: clamp(28px, 4.6vw, 68px); padding: calc(48px + var(--cut-y)) 32px 48px; background: var(--panel, #1F4A1C); color: #FFFFFF; clip-path: polygon(0 var(--cut-y), 100% 0, 100% 100%, 0 100%); font-family: Archivo, 'Arial Narrow', Arial, sans-serif; } .ds-num { margin: 0; font-size: clamp(5rem, 14vw, 9rem); font-weight: 900; font-stretch: 62%; line-height: .82; letter-spacing: -.02em; font-variant-numeric: tabular-nums; } .ds-num span { color: var(--leaf, #9BD27A); } .ds-what { margin: 8px 0 0; font-size: 1.4rem; line-height: 1.25; max-width: 20ch; }"
+    },
+    {
+      "name": "Project Data",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Value above name: condensed title-size value with the muted term below.",
+      "html": "<dl class=\"ds-dl\"><div><dt>Área</dt><dd>60,33 m²</dd></div><div><dt>Prazo</dt><dd>30 dias</dd></div></dl>",
+      "css": ".ds-dl { display: flex; flex-wrap: wrap; gap: 18px 40px; margin: 0; font-family: Archivo, 'Arial Narrow', Arial, sans-serif; color: var(--ink, #17260F); } .ds-dl div { display: flex; flex-direction: column-reverse; gap: 4px; } .ds-dl dt { font-size: 15px; font-weight: 500; color: var(--muted, #3F5536); } .ds-dl dd { margin: 0; font-size: clamp(1.8rem, 2.8vw, 2.5rem); font-weight: 800; font-stretch: 70%; line-height: 1; font-variant-numeric: tabular-nums; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Roofline Portfolio",
+    "overview": "A builder's portfolio that reads like the houses it shows: real photographs and videos carried full-bleed, white ground, and a single roof pitch that slices the page where a roof would meet the sky. The system is green and white only, taken from the logo's leaf and its darker forest tone. Everything that is an action is leaf green; everything that is a panel is forest green with white text. Nothing floats: depth comes from alternating bands and the angled cuts, never from shadows or rules.\n\nOne type family, Archivo, does all the work by changing width: condensed (62 to 70%) and heavy for headings, project data and the big numbers; normal width for reading text. Corners are square throughout. Density is calm on the band level (generous vertical padding) and compact inside components (tight chips, square buttons, stacked data).\n\nMotion is gentle and limited to entrance: the hero rises, the hero photo settles, section parts rise on scroll where scroll timelines exist. Videos and photos stay fixed in the layout; nothing is pinned or scroll-linked.",
+    "keyCharacteristics": [
+      "Green and white only: white ground, pale-leaf alternate bands, forest-green panels.",
+      "Leaf green marks every action; light leaf takes that role on forest panels.",
+      "One family, two widths: condensed Archivo for headings and numbers, normal width for text.",
+      "Square corners on every button, chip, field, tab and frame.",
+      "The roof-angle cut is the signature silhouette.",
+      "Flat: no shadows, no hairline borders."
+    ],
+    "rules": [
+      { "name": "The Action Is Leaf Rule", "body": "Anything tappable that commits an action is filled leaf green on light ground and light leaf on forest ground. No other hue carries action.", "section": "colors" },
+      { "name": "The Two Greens Rule", "body": "The palette is the logo's green and white. Do not add a third brand hue; new surfaces use the existing tints (pale leaf, leaf tone) or the forest panel.", "section": "colors" },
+      { "name": "The Material Exception Rule", "body": "The wall cross-section draws wood, PET wool and drywall in their own material tones (warm wood browns, off-white wool, pale grey board). These describe physical materials inside the schematic only and never leave it as UI color.", "section": "colors" },
+      { "name": "The One Family Rule", "body": "Archivo is the only typeface. Hierarchy comes from width, weight and size, never from a second family.", "section": "typography" },
+      { "name": "The Width Is Voice Rule", "body": "Condensed width (62 to 70%) belongs to headings, numbers and data values; reading text stays at 100% width.", "section": "typography" },
+      { "name": "The Value Above Name Rule", "body": "In project data, the value is set large in the title voice and its term sits below it in the small muted label.", "section": "typography" },
+      { "name": "The No Shadow Rule", "body": "Nothing casts a shadow. A surface stands out by tone, never by lift.", "section": "elevation" },
+      { "name": "The No Hairline Rule", "body": "Surfaces are separated by tone, not by 1px rules. The only strokes are the 2px outline of the line button, the 2px field border that appears on hover and focus, and the 2px nav underline.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do fill every action leaf green on light ground and light leaf on forest panels.",
+      "Do set headings, project values and big numbers in condensed Archivo (62 to 70% width, 800 to 900) and reading text at normal width.",
+      "Do keep every corner square (0 radius).",
+      "Do separate sections by alternating white, pale leaf and forest bands, and use the roof-angle cut where a panel band overlaps the band above.",
+      "Do cap reading text at 62ch and lead lines near 30 to 34ch.",
+      "Do keep motion to entrance rises and the hero photo settle, and honor reduced motion."
+    ],
+    "donts": [
+      "Don't add shadows to any surface, button or image.",
+      "Don't separate content with 1px hairline borders or divider rules.",
+      "Don't introduce a second typeface or a third brand hue.",
+      "Don't round corners on buttons, chips, fields or frames.",
+      "Don't pin, scroll-link or animate project videos and photos beyond the entrance rise.",
+      "Don't use the wall schematic's wood and board tones outside the cross-section."
+    ]
+  }
+}

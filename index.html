@@ -1,51 +1,394 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oráculo de Conselhos - Roteiro 08</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        #textoConselho { font-style: italic; color: #555; margin-top: 20px; min-height: 1.2em; }
-        button { padding: 10px 20px; cursor: pointer; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Casas Eco | Casas em madeira e alvenaria em Garopaba/SC</title>
+  <meta name="description" content="Casas Eco: construtora e material de construção em Garopaba/SC. Casas especiais em madeira e alvenaria, decks e pergolados. Mais de 150 obras e 20 anos no mercado.">
+  <meta name="theme-color" content="#1F4A1C">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Casas Eco | Casas especiais em madeira e alvenaria">
+  <meta property="og:description" content="Sua casa, seu estilo, seu futuro. A natureza faz parte. Construtora e material de construção em Garopaba/SC.">
+  <meta property="og:image" content="img/hero.jpg">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="topo" lang="pt-BR">
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<div class="pg" id="pg" aria-hidden="true"></div>
+<div class="top-mark" id="topMark" aria-hidden="true"></div>
 
-    <h3>Atividade 1: O Oráculo de Conselhos</h3>
-    <!-- Elementos solicitados no Roteiro 08 -->
-    <button id="btnConselho">Pedir Conselho</button>
-    <p id="textoConselho"></p>
+<header class="bar" id="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#topo" aria-label="Casas Eco, início"><img src="img/logo.png" width="94" height="48" alt="Casas Eco"></a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#como-construimos">Como construímos</a>
+      <a href="#sistemas">Sistemas</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#obras">Obras</a>
+      <a href="#orcamento">Orçamento</a>
+      <a class="nav-cta" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20portf%C3%B3lio%20de%20voc%C3%AAs%20e%20gostaria%20de%20conhecer%20melhor%20o%20trabalho%20de%20voc%C3%AAs.">Chamar no WhatsApp</a>
+    </nav>
+    <a class="btn btn--bar" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20portf%C3%B3lio%20de%20voc%C3%AAs%20e%20gostaria%20de%20conhecer%20melhor%20o%20trabalho%20de%20voc%C3%AAs.">Chamar no WhatsApp</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav"><span class="menu-ico" aria-hidden="true"></span><span class="menu-txt">Menu</span></button>
+  </div>
+</header>
 
-    <script>
-        // Seleção dos elementos do DOM
-        const btn = document.getElementById("btnConselho");
-        const display = document.getElementById("textoConselho");
+<main id="conteudo" tabindex="-1">
+  <section class="hero on-panel" aria-labelledby="h-hero">
+    <div class="hero-text">
+      <h1 id="h-hero">Casas especiais em madeira e alvenaria.</h1>
+      <p class="sub">Sua casa, seu estilo, seu futuro. A natureza faz parte.</p>
+      <div class="ctas">
+        <a class="btn btn--solid" href="#obras">Ver as obras</a>
+        <a class="btn btn--line" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20portf%C3%B3lio%20de%20voc%C3%AAs%20e%20gostaria%20de%20conhecer%20melhor%20o%20trabalho%20de%20voc%C3%AAs.">Chamar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-img"><img src="img/hero.jpg" srcset="img/hero-800.webp 800w, img/hero-1200.webp 1200w, img/hero-2000.webp 2000w" sizes="(max-width: 860px) 100vw, 56vw" fetchpriority="high" width="2000" height="1124" alt="Casa de madeira da Casas Eco, com telhado inclinado e deck, cercada de vegetação"></div>
+  </section>
 
-        // Evento de clique para disparar a Fetch API[cite: 1]
-        btn.addEventListener("click", () => {
-            display.innerText = "Consultando o oráculo...";
+  <section class="band" id="quem-somos" aria-labelledby="h-quem">
+    <div class="wrap grid">
+      <h2 class="c-head slide" id="h-quem">Quem somos</h2>
+      <div class="c-body prose">
+        <p class="lead">A Casas Eco oferece um ecossistema completo para a sua obra.</p>
+        <p>Como construtora, executamos projetos personalizados em madeira e alvenaria, decks e pergolados. Como material de construção, garantimos que itens essenciais de elétrica, hidráulica e ferragens tenham o padrão de qualidade que sua casa merece.</p>
+        <p>Ter a Casas Eco no seu projeto é ter um atendimento integrado, onde a expertise de quem constrói se une à curadoria de quem entende de materiais.</p>
+      </div>
+      <figure class="ph ph--wide slide"><img src="img/loja.jpg" srcset="img/loja.webp 1500w" width="1500" height="849" loading="lazy" alt="Loja e escritório da Casas Eco, com fachada em madeira e pergolado"></figure>
+      <figure class="ph ph--tall slide"><img src="img/aerea.jpg" srcset="img/aerea.webp 1400w" width="1400" height="786" loading="lazy" alt="Vista aérea de uma casa de madeira construída pela Casas Eco"></figure>
+      <ul class="points">
+        <li>Empresa consolidada, com sede e estrutura própria em Garopaba/SC.</li>
+        <li>Madeira ecologicamente correta: pinus tratado autoclavado.</li>
+        <li>Execução de projetos mistos, em madeira e alvenaria.</li>
+      </ul>
+    </div>
+  </section>
 
-            // 1. Fetch: Faz o pedido à API de conselhos[cite: 1]
-            fetch("https://api.adviceslip.com/advice")
-                .then(res => res.json()) // 2. json(): Transforma o pedido bruto em objeto JS[cite: 1]
-                .then(dados => {
-                    const conselhoIngles = dados.slip.advice;
+  <section class="band cut on-panel stats" id="experiencia" aria-label="Experiência da empresa">
+    <div class="wrap grid">
+      <p class="stat stat--main">
+        <span class="num"><span class="sr">Mais de </span><span data-to="150">150</span><span class="plus" aria-hidden="true">+</span></span>
+        <span class="what">obras realizadas na região</span>
+      </p>
+      <p class="stat stat--side">
+        <span class="num"><span class="sr">Mais de </span><span data-to="20">20</span><span class="plus" aria-hidden="true">+</span></span>
+        <span class="what">anos no mercado</span>
+      </p>
+    </div>
+  </section>
 
-                    // 3. Tradução: Enviando o conselho para uma API de tradução gratuita
-                    return fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(conselhoIngles)}&langpair=en|pt-BR`);
-                })
-                .then(resTrad => resTrad.json())
-                .then(dadosTrad => {
-                    // 4. Exibição: Mostra o conselho traduzido na tela[cite: 1]
-                    display.innerText = dadosTrad.responseData.translatedText;
-                })
-                .catch(erro => {
-                    console.error("Erro na requisição:", erro);
-                    display.innerText = "O oráculo está em silêncio no momento. Tente novamente.";
-                });
-        });
-    </script>
+  <section class="quick" aria-label="Falar com a Casas Eco">
+    <div class="wrap quick-in">
+      <p class="quick-t"><strong>Showroom em Campo Duna, Garopaba.</strong> Segunda a sexta, 8h às 18h. Sábado, 8h às 12h.</p>
+      <div class="ctas">
+        <a class="btn btn--solid" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20portf%C3%B3lio%20de%20voc%C3%AAs%20e%20gostaria%20de%20conhecer%20melhor%20o%20trabalho%20de%20voc%C3%AAs.">Chamar no WhatsApp</a>
+        <a class="btn btn--line" href="https://www.google.com/maps/place/CASAS+ECO/data=!4m2!3m1!1s0x0:0xa97b5b66048f490a?sa=X&amp;ved=1t:2428&amp;hl=pt-BR&amp;ictx=111" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      </div>
+    </div>
+  </section>
 
+  <section class="band" id="como-construimos" aria-labelledby="h-como">
+    <div class="wrap">
+      <div class="grid">
+        <div class="head-copy slide">
+          <h2 id="h-como">Como construímos</h2>
+          <p class="lead">Três vídeos da equipe da Casas Eco na construção de uma cobertura.</p>
+          <p class="muted">Clique ou toque em um vídeo para assistir. Ao terminar, o próximo começa.</p>
+        </div>
+      </div>
+      <div class="reel" id="reel">
+        <figure><div class="vid"><video playsinline preload="none" data-poster="video/cobertura-1.webp" src="video/cobertura-1.mp4" aria-label="Cobertura, parte 1"></video><button class="vplay" type="button" aria-label="Reproduzir: Cobertura, parte 1"><span aria-hidden="true"></span></button></div><figcaption>Parte 1</figcaption></figure>
+        <figure><div class="vid"><video playsinline preload="none" data-poster="video/cobertura-2.webp" src="video/cobertura-2.mp4" aria-label="Cobertura, parte 2"></video><button class="vplay" type="button" aria-label="Reproduzir: Cobertura, parte 2"><span aria-hidden="true"></span></button></div><figcaption>Parte 2</figcaption></figure>
+        <figure><div class="vid"><video playsinline preload="none" data-poster="video/cobertura-3.webp" src="video/cobertura-3.mp4" aria-label="Cobertura, parte 3"></video><button class="vplay" type="button" aria-label="Reproduzir: Cobertura, parte 3"><span aria-hidden="true"></span></button></div><figcaption>Parte 3</figcaption></figure>
+      </div>
+      <div class="reel-dots" id="reelDots" aria-label="Escolher vídeo">
+        <button type="button" aria-label="Parte 1" aria-current="true"></button>
+        <button type="button" aria-label="Parte 2"></button>
+        <button type="button" aria-label="Parte 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="sistemas" aria-labelledby="h-sis">
+    <div class="wrap grid">
+      <h2 id="h-sis" style="grid-column:1/-1">Sistemas construtivos</h2>
+      <div class="sys" role="tablist" aria-orientation="vertical" aria-label="Sistemas construtivos">
+        <button type="button" role="tab" id="t1" aria-selected="true" aria-controls="p1">Madeira</button>
+        <button type="button" role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Alvenaria</button>
+        <button type="button" role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1">Projetos mistos</button>
+      </div>
+      <div class="sys-view">
+        <div role="tabpanel" id="p1" aria-labelledby="t1">
+          <figure><img src="img/madeira.jpg" width="1330" height="879" loading="lazy" alt="Casa de madeira de dois pavimentos com varanda e deck"></figure>
+          <p>Pinus tratado autoclavado, madeira ecologicamente correta. Escolha a parede e veja o corte.</p>
+          <fieldset class="wall">
+            <legend class="sr">Tipo de parede</legend>
+            <label><input type="radio" name="wall" value="simples" checked><span>Parede simples</span></label>
+            <label><input type="radio" name="wall" value="pet"><span>Dupla com lã de PET</span></label>
+            <label><input type="radio" name="wall" value="drywall"><span>Dupla com drywall</span></label>
+          </fieldset>
+          <figure class="wall-fig">
+            <svg id="wallSvg" viewBox="0 0 600 230" role="img" aria-labelledby="wallCap"></svg>
+            <figcaption id="wallCap">Parede simples: uma camada de pinus autoclavado. Esquema ilustrativo, fora de escala.</figcaption>
+          </figure>
+        </div>
+        <div role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+          <figure><img src="img/alvenaria.jpg" width="1400" height="1050" loading="lazy" alt="Varanda de casa com portas venezianas de madeira ao entardecer"></figure>
+          <p>Mais resistência, segurança e durabilidade para o seu lar.</p>
+        </div>
+        <div role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+          <figure><img src="img/mista.jpg" width="1120" height="843" loading="lazy" alt="Casa de dois pavimentos que combina madeira e alvenaria"></figure>
+          <p>Projetos que combinam madeira e alvenaria na mesma construção.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" id="projetos" aria-labelledby="h-proj">
+    <div class="band proj-intro">
+      <div class="wrap grid">
+        <h2 class="c-head slide" id="h-proj">Projetos</h2>
+        <p class="lead c-body slide">Obras da Casas Eco em vídeo, com área e prazo.</p>
+      </div>
+    </div>
+    <article class="proj proj--a">
+    <div class="wrap grid proj-row">
+      <div class="proj-copy slide">
+        <h3 id="h-chale">Chalé A-frame</h3>
+        <p class="lead">Pronto em 30 dias.</p>
+        <p class="prose">Construído 100% com madeira ecologicamente correta, com pergolado, churrasqueira e área de lazer.</p>
+        <dl class="dl">
+          <div><dt>Local</dt><dd>Praia do Rosa</dd></div>
+          <div><dt>Área</dt><dd>60,33 m²</dd></div>
+          <div><dt>Prazo</dt><dd>30 dias</dd></div>
+        </dl>
+        <a class="btn btn--line" href="#obras">Ver as obras</a>
+      </div>
+      <figure class="proj-video">
+        <div class="vid"><video playsinline preload="none" data-poster="video/chale-aframe.webp" src="video/chale-aframe.mp4" aria-label="Vídeo do chalé A-frame da Casas Eco"></video><button class="vplay" type="button" aria-label="Reproduzir: Vídeo do chalé A-frame da Casas Eco"><span aria-hidden="true"></span></button></div>
+      </figure>
+    </div>
+    </article>
+    <article class="proj proj--b on-panel">
+    <div class="wrap grid proj-row proj-row--duo">
+      <div class="proj-copy slide">
+        <h3 id="h-lagoa">Pousada com vista pra lagoa</h3>
+        <p class="lead">Pousada completa em 150 dias.</p>
+        <p class="prose">Pousada de 210 m² na Praia do Rosa, com decks e dois quartos separados. Os dois lofts ficaram prontos em 90 dias.</p>
+        <dl class="dl">
+          <div><dt>Local</dt><dd>Praia do Rosa</dd></div>
+          <div><dt>Área total</dt><dd>210 m²</dd></div>
+          <div><dt>Dois lofts</dt><dd>90 dias</dd></div>
+          <div><dt>Pousada inteira</dt><dd>150 dias</dd></div>
+        </dl>
+        <a class="btn btn--line" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20projeto%20%22Pousada%20com%20vista%20pra%20lagoa%22%20no%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais.">Chamar no WhatsApp</a>
+      </div>
+      <div class="proj-duo proj-duo--3">
+        <figure><div class="vid"><video playsinline preload="none" data-poster="video/pousada-antes-depois.webp" src="video/pousada-antes-depois.mp4" aria-label="Pousada com vista pra lagoa: antes e depois"></video><button class="vplay" type="button" aria-label="Reproduzir: Pousada com vista pra lagoa: antes e depois"><span aria-hidden="true"></span></button></div><figcaption>Antes e depois</figcaption></figure>
+        <figure><div class="vid"><video playsinline preload="none" data-poster="video/pousada-construcao.webp" src="video/pousada-construcao.mp4" aria-label="Pousada com vista pra lagoa: obra em construção"></video><button class="vplay" type="button" aria-label="Reproduzir: Pousada com vista pra lagoa: obra em construção"><span aria-hidden="true"></span></button></div><figcaption>Em construção</figcaption></figure>
+        <figure><div class="vid"><video playsinline preload="none" data-poster="video/pousada-pronta.webp" src="video/pousada-pronta.mp4" aria-label="Pousada com vista pra lagoa: obra pronta"></video><button class="vplay" type="button" aria-label="Reproduzir: Pousada com vista pra lagoa: obra pronta"><span aria-hidden="true"></span></button></div><figcaption>Pronta</figcaption></figure>
+      </div>
+    </div>
+    </article>
+    <article class="proj proj--c">
+    <div class="wrap grid proj-row">
+      <div class="proj-copy slide">
+        <h3 id="h-casa120">Casa 2 pisos</h3>
+        <p class="lead">Pronta em 120 dias.</p>
+        <p class="prose">Casa de 164 m² com 3 quartos, sendo 1 suíte, e 50 m² de área externa.</p>
+        <dl class="dl">
+          <div><dt>Área</dt><dd>164 m²</dd></div>
+          <div><dt>Área externa</dt><dd>50 m²</dd></div>
+          <div><dt>Quartos</dt><dd>3</dd></div>
+          <div><dt>Prazo</dt><dd>120 dias</dd></div>
+        </dl>
+        <a class="btn btn--solid" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20projeto%20%22Casa%202%20pisos%22%20no%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais.">Chamar no WhatsApp</a>
+      </div>
+      <figure class="proj-video">
+        <div class="vid"><video playsinline preload="none" data-poster="video/casa-2-pisos.webp" src="video/casa-2-pisos.mp4" aria-label="Vídeo de uma casa de madeira de 164 m² com 3 quartos, pronta em 120 dias"></video><button class="vplay" type="button" aria-label="Reproduzir: Vídeo de uma casa de madeira de 164 m² com 3 quartos, pronta em 120 dias"><span aria-hidden="true"></span></button></div>
+      </figure>
+    </div>
+    </article>
+    <article class="proj proj--d on-panel">
+    <div class="wrap grid proj-row">
+      <div class="proj-copy slide">
+        <h3 id="h-chale76">Chalé 76 m²</h3>
+        <p class="lead">Concluído em 90 dias.</p>
+        <p class="prose">Chalé de 76 m² de área útil, com 36 m² de deck e varanda.</p>
+        <dl class="dl">
+          <div><dt>Área útil</dt><dd>76 m²</dd></div>
+          <div><dt>Deck e varanda</dt><dd>36 m²</dd></div>
+          <div><dt>Prazo</dt><dd>90 dias</dd></div>
+        </dl>
+        <a class="btn btn--line" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20projeto%20%22Chal%C3%A9%2076%20m%C2%B2%22%20no%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais.">Chamar no WhatsApp</a>
+      </div>
+      <figure class="proj-video">
+        <div class="vid"><video playsinline preload="none" data-poster="video/chale-76.webp" src="video/chale-76.mp4" aria-label="Vídeo do chalé de 76 m² de área útil, concluído em 90 dias"></video><button class="vplay" type="button" aria-label="Reproduzir: Vídeo do chalé de 76 m² de área útil, concluído em 90 dias"><span aria-hidden="true"></span></button></div>
+      </figure>
+    </div>
+    </article>
+    <article class="proj proj--e">
+    <div class="wrap grid proj-row">
+      <div class="proj-copy slide">
+        <h3 id="h-casa150">Casa 2 pisos com vista pra lagoa</h3>
+        <p class="lead">150 m² com parede dupla de drywall.</p>
+        <p class="prose">Casa de dois pisos com vista para a lagoa, construída com parede dupla com drywall.</p>
+        <dl class="dl">
+          <div><dt>Área</dt><dd>150 m²</dd></div>
+          <div><dt>Pavimentos</dt><dd>2</dd></div>
+          <div><dt>Parede</dt><dd>Dupla, com drywall</dd></div>
+        </dl>
+        <a class="btn btn--solid" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20projeto%20%22Casa%202%20pisos%20com%20vista%20pra%20lagoa%22%20no%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais.">Chamar no WhatsApp</a>
+      </div>
+      <figure class="proj-video">
+        <div class="vid"><video playsinline preload="none" data-poster="video/casa-lagoa.webp" src="video/casa-lagoa.mp4" aria-label="Vídeo da Casa de 2 pisos com vista pra lagoa, 150 m², parede dupla com drywall"></video><button class="vplay" type="button" aria-label="Reproduzir: Vídeo da Casa de 2 pisos com vista pra lagoa, 150 m², parede dupla com drywall"><span aria-hidden="true"></span></button></div>
+      </figure>
+    </div>
+    </article>
+  </section>
+
+  <section class="band alt" id="obras" aria-labelledby="h-obras">
+    <div class="wrap">
+      <div class="gal-head"><h2 id="h-obras">Portfólio de obras</h2><p class="muted">14 fotos. Clique ou toque em uma para ampliar.</p></div>
+      <div class="gal" id="gal">
+        <button type="button" style="--s:7;--r:520" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g037.jpg" width="1041" height="781" loading="lazy" alt="Casa de madeira de dois pavimentos, com deck e varanda ampla"></button>
+        <button type="button" style="--s:5;--r:520" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g066.jpg" width="1200" height="1600" loading="lazy" alt="Casa de madeira escura com dois pavimentos e deck amarelo"></button>
+        <button type="button" style="--s:7;--r:400" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g054.jpg" width="1200" height="697" loading="lazy" alt="Casa de madeira com telhado branco e rede na varanda, vista do alto"></button>
+        <button type="button" style="--s:5;--r:400" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g057.jpg" width="1152" height="863" loading="lazy" alt="Casa de madeira sobre pilotis em campo aberto, com montanhas ao fundo"></button>
+        <button type="button" style="--s:6;--r:440" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g038.jpg" width="1120" height="840" loading="lazy" alt="Casa de madeira com rede e deck ao entardecer"></button>
+        <button type="button" style="--s:6;--r:440" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g044.jpg" width="1120" height="840" loading="lazy" alt="Casa de dois pavimentos em madeira escura e cinza, com varanda"></button>
+        <button type="button" style="--s:5;--r:420" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g056.jpg" width="1152" height="768" loading="lazy" alt="Casa de madeira em terreno inclinado, com escada de pedra"></button>
+        <button type="button" style="--s:7;--r:420" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g043.jpg" width="1200" height="569" loading="lazy" alt="Casa com estrutura preta, fachada em madeira e portas de vidro"></button>
+        <button type="button" style="--s:6;--r:440" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g062.jpg" width="1041" height="781" loading="lazy" alt="Casa de madeira de dois pavimentos em fase de acabamento"></button>
+        <button type="button" style="--s:6;--r:440" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g060.jpg" width="1120" height="840" loading="lazy" alt="Varanda coberta de madeira iluminada no fim do dia"></button>
+        <button type="button" style="--s:7;--r:400" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g068.jpg" width="1200" height="675" loading="lazy" alt="Casa de cor verde-clara com varanda e deck de madeira"></button>
+        <button type="button" style="--s:5;--r:400" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g024.jpg" width="1200" height="900" loading="lazy" alt="Casa verde com varanda, deck e pergolado"></button>
+        <button type="button" style="--s:6;--r:420" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g061.jpg" width="1120" height="840" loading="lazy" alt="Interior com telhado de estrutura de madeira aparente"></button>
+        <button type="button" style="--s:6;--r:420" aria-haspopup="dialog" aria-label="Ampliar foto"><img src="img/g063.jpg" width="1120" height="840" loading="lazy" alt="Salão interno com piso de madeira e portas de vidro"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="diferenciais" aria-labelledby="h-vant">
+    <div class="wrap grid adv">
+      <div class="proj-copy slide">
+        <h2 id="h-vant">Obra e material no mesmo lugar</h2>
+        <p class="lead">Aqui somos construtora e material.</p>
+        <ul class="opts">
+          <li>Melhora a condição de compra</li>
+          <li>Menos retrabalho</li>
+          <li>Qualidade do projeto ao acabamento</li>
+        </ul>
+      </div>
+      <figure class="proj-video">
+        <div class="vid"><video playsinline preload="none" data-poster="video/construtora-e-material.webp" src="video/construtora-e-material.mp4" aria-label="Rafael, da Casas Eco, explica a vantagem de ter construtora e material de construção no mesmo lugar"></video><button class="vplay" type="button" aria-label="Reproduzir: Rafael, da Casas Eco, explica a vantagem de ter construtora e material de construção no mesmo lugar"><span aria-hidden="true"></span></button></div>
+      </figure>
+    </div>
+    <div class="wrap grid adv-bio">
+      <figure class="bio-ph"><img src="img/casabio.jpg" width="719" height="1280" loading="lazy" alt="Estações de tratamento de esgoto ecológico da CasaBio"></figure>
+      <div class="bio-copy">
+        <h2 id="h-bio">Parceria com a CasaBio</h2>
+        <p class="lead">Saneamento inteligente, ecológico e pensado para quem vive aqui.</p>
+        <div class="prose">
+          <p>A CasaBio, em parceria com a Casas Eco, oferece uma solução completa em saneamento ecológico. A estação de tratamento de esgoto ecológica trata até 98% do esgoto, em um sistema eficiente e compacto, ideal para as condições da região: solo, lençol freático e alta demanda da temporada.</p>
+        </div>
+        <ul class="opts">
+          <li>Mais saúde para quem mora e circula</li>
+          <li>Menor impacto ambiental nas lagoas e no solo</li>
+          <li>Mais segurança e tranquilidade para sua casa ou negócio</li>
+        </ul>
+        <p class="prose">Entregamos tudo do projeto à instalação completa, com acompanhamento técnico e responsabilidade ambiental.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="clientes" aria-labelledby="h-clientes">
+    <div class="wrap grid">
+      <h2 id="h-clientes" class="c-head">O que dizem os clientes</h2>
+      <div class="quotes">
+        <figure class="quote slide">
+          <blockquote><p>Estamos muito satisfeitos com a qualidade do produto, a mão de obra e todo o processo da construção, desde a fundação até os retoques mais finos.</p></blockquote>
+          <figcaption><strong>Silvana Thormann</strong>Garopaba</figcaption>
+        </figure>
+        <figure class="quote slide">
+          <blockquote><p>Cumpriram o acordado sempre se dispondo a resolver qualquer problema ou alteração proposta por mim na obra.</p></blockquote>
+          <figcaption><strong>Eduardo Frigeri</strong>Imbituba</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band orc-band" id="orcamento" aria-labelledby="h-orc">
+    <div class="wrap grid">
+      <div class="orc-head slide">
+        <h2 id="h-orc">Comece seu orçamento</h2>
+        <p class="lead">Conte o básico da obra. A mensagem fica pronta e abre no WhatsApp da Casas Eco.</p>
+        <p class="muted">Nada é enviado por este site: o botão só abre a conversa no WhatsApp com o texto escrito, e você revisa antes de mandar.</p>
+      </div>
+      <form class="orc" id="orc" novalidate>
+        <fieldset class="chips">
+          <legend>Tipo de obra</legend>
+          <label><input type="radio" name="tipo" value="uma casa" checked><span>Casa</span></label>
+          <label><input type="radio" name="tipo" value="um chalé"><span>Chalé</span></label>
+          <label><input type="radio" name="tipo" value="uma pousada ou lofts"><span>Pousada ou lofts</span></label>
+          <label><input type="radio" name="tipo" value="um deck ou pergolado"><span>Deck ou pergolado</span></label>
+        </fieldset>
+        <fieldset class="chips">
+          <legend>Sistema</legend>
+          <label><input type="radio" name="sis" value="em madeira" checked><span>Madeira</span></label>
+          <label><input type="radio" name="sis" value="em alvenaria"><span>Alvenaria</span></label>
+          <label><input type="radio" name="sis" value="misto, madeira e alvenaria"><span>Madeira e alvenaria</span></label>
+          <label><input type="radio" name="sis" value="e ainda quero orientação sobre o sistema"><span>Quero orientação</span></label>
+        </fieldset>
+        <div class="orc-row">
+          <label class="field"><span>Área aproximada, em m²</span><input id="orcArea" type="number" inputmode="numeric" min="10" max="3000" placeholder="Ex.: 90" aria-describedby="orcAreaErr"><small class="field-err" id="orcAreaErr" hidden>Use um número entre 10 e 3000.</small></label>
+          <label class="field"><span>Onde fica o terreno</span><input id="orcLocal" type="text" autocomplete="address-level2" placeholder="Ex.: Praia do Rosa"></label>
+          <label class="field"><span>Seu nome</span><input id="orcNome" type="text" autocomplete="name" placeholder="Opcional"></label>
+        </div>
+        <div class="orc-out">
+          <p class="orc-label" id="orcLabel">Mensagem que vai para o WhatsApp</p>
+          <p class="orc-prev" id="orcPrev" aria-labelledby="orcLabel" aria-live="polite"></p>
+          <a class="btn btn--solid" id="orcGo" href="https://wa.me/5548996754334" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="band cut on-panel contact" id="contato" aria-labelledby="h-contato">
+    <div class="wrap grid">
+      <h2 id="h-contato">Vamos conversar sobre a sua obra?</h2>
+      <dl class="contact-list">
+        <div class="c-wa"><dt>WhatsApp</dt><dd><span id="waNum">(48) 99675-4334</span> <button class="copy" id="copyWa" type="button">Copiar número</button></dd></div>
+        <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/casasecomadeiras/">@casasecomadeiras</a></dd></div>
+        <div><dt>Site</dt><dd><a href="https://casaseco.com.br">casaseco.com.br</a></dd></div>
+        <div><dt>Showroom</dt><dd>SC-434, km 3, Campo Duna, Garopaba/SC</dd></div>
+        <div><dt>Horário</dt><dd>Segunda a sexta, 8h às 18h<br>Sábado, 8h às 12h</dd></div>
+      </dl>
+      <div class="ctas"><a class="btn btn--solid" href="https://wa.me/5548996754334?text=Ol%C3%A1%2C%20Casas%20Eco%21%20Vi%20o%20portf%C3%B3lio%20de%20voc%C3%AAs%20e%20gostaria%20de%20conhecer%20melhor%20o%20trabalho%20de%20voc%C3%AAs.">Chamar no WhatsApp</a><a class="btn btn--line" href="https://www.google.com/maps/place/CASAS+ECO/data=!4m2!3m1!1s0x0:0xa97b5b66048f490a?sa=X&amp;ved=1t:2428&amp;hl=pt-BR&amp;ictx=111" target="_blank" rel="noopener">Abrir no Google Maps</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <img src="img/logo.png" width="102" height="52" loading="lazy" alt="Casas Eco">
+    <p>Casas especiais em madeira e alvenaria e materiais de construção. SC-434, km 3, Campo Duna, Garopaba/SC.</p>
+    <a class="totop" href="#topo">Voltar ao topo</a>
+  </div>
+</footer>
+<dialog class="lb" id="lb" aria-label="Foto ampliada">
+  <div class="lb-stage" id="lbStage"><img id="lbi" src="img/g037.jpg" width="1041" height="781" loading="lazy" alt="Casa de madeira de dois pavimentos, com deck e varanda ampla"></div>
+  <button type="button" class="lb-x" id="lbClose" aria-label="Fechar">Fechar</button>
+  <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Foto anterior"><span aria-hidden="true"></span></button>
+  <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Próxima foto"><span aria-hidden="true"></span></button>
+  <p class="lb-n" id="lbn" aria-live="polite"></p>
+</dialog>
+</div>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>
