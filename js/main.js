@@ -3,6 +3,11 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ações de teclado não animam; só o que veio do mouse ou do dedo */
+  var lastPointer = 0;
+  addEventListener('pointerdown', function () { lastPointer = Date.now(); }, true);
+  addEventListener('keydown', function () { lastPointer = 0; }, true);
+  function byPointer() { return Date.now() - lastPointer < 800; }
 
   /* barra, progresso e menu */
   var bar = $('#bar'), pg = $('#pg'), mb = $('#menuBtn'), nv = $('#nav'), mt = $('.menu-txt');
@@ -59,6 +64,7 @@
       var on = k === i;
       t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; panels[k].hidden = !on;
     });
+    panels[i].classList.toggle('instant', !!focus);
     if (focus) tabs[i].focus();
   }
   tabs.forEach(function (t, i) {
@@ -127,7 +133,7 @@
   $('#lbNext').addEventListener('click', function () { show(cur + 1, 1); });
   $('#lbClose').addEventListener('click', closeLb);
   lb.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') show(cur - 1, -1); else if (e.key === 'ArrowRight') show(cur + 1, 1);
+    if (e.key === 'ArrowLeft') show(cur - 1); else if (e.key === 'ArrowRight') show(cur + 1);
   });
   stage.addEventListener('click', function (e) { if (e.target === stage) closeLb(); });
   var sx = null, sy = null;
@@ -160,7 +166,7 @@
   var lastGeo = {};
   function drawWall(type, play) {
     var w = WALLS[type]; if (!svg || !w) return;
-    var geo = {}, fresh = 0, ease = 'cubic-bezier(.16, 1, .3, 1)';
+    var geo = {}, fresh = 0, ease = getComputedStyle(document.documentElement).getPropertyValue('--ease').trim();
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     /* desenha na largura real, para o texto ficar sempre em 15 a 16px */
     var W = Math.round(svg.getBoundingClientRect().width) || 600, k = Math.min(1.5, W / 520);
@@ -195,8 +201,8 @@
       geo[l[3]] = x;
       if (play && !rm && g.animate) {
         var was = lastGeo[l[3]];
-        if (was !== undefined) g.animate([{ transform: 'translateX(' + (was - x) + 'px)' }, { transform: 'none' }], { duration: 320, easing: ease });
-        else g.animate([{ opacity: 0, transform: 'translateX(-28px)' }, { opacity: 1, transform: 'none' }], { duration: 380, delay: 80 + fresh++ * 110, easing: ease, fill: 'backwards' });
+        if (was !== undefined) g.animate([{ transform: 'translateX(' + (was - x) + 'px)' }, { transform: 'none' }], { duration: 260, easing: ease });
+        else g.animate([{ opacity: 0, transform: 'translateX(-28px)' }, { opacity: 1, transform: 'none' }], { duration: 300, delay: 40 + fresh++ * 70, easing: ease, fill: 'backwards' });
       }
       svg.appendChild(g); x += lw;
     });
@@ -204,7 +210,7 @@
     cap.textContent = w.cap + ' Esquema ilustrativo, fora de escala.';
     if (play && !rm && cap.animate) cap.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
   }
-  $$('.wall input').forEach(function (r) { r.addEventListener('change', function () { if (r.checked) drawWall(wallType = r.value, true); }); });
+  $$('.wall input').forEach(function (r) { r.addEventListener('change', function () { if (r.checked) drawWall(wallType = r.value, byPointer()); }); });
   /* a aba Madeira pode começar escondida em telas estreitas; redesenha quando ela aparece */
   tabs.forEach(function (t) { t.addEventListener('click', function () { requestAnimationFrame(function () { drawWall(wallType); }); }); });
   addEventListener('resize', function () { drawWall(wallType); });
@@ -228,7 +234,7 @@
       prev.textContent = t;
       go.href = 'https://wa.me/5548996754334?text=' + encodeURIComponent(t);
       /* um toque de verde na caixa a cada escolha confirmada, não a cada letra */
-      if (e && e.type === 'change' && box.animate) box.animate([{ backgroundColor: flash[0] }, { backgroundColor: flash[1] }], { duration: 450, easing: 'ease-out' });
+      if (e && e.type === 'change' && box.animate) box.animate([{ backgroundColor: flash[0] }, { backgroundColor: flash[1] }], { duration: 300, easing: 'ease-out' });
     };
     orc.addEventListener('input', msg);
     orc.addEventListener('change', msg);

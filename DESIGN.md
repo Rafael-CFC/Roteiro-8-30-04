@@ -199,7 +199,7 @@ A two-green palette on white: a bright leaf for action, a deep forest for panels
 
 A 12-column grid (24px column gap, fluid row gap) inside a 1248px container with 24px minimum side padding that respects safe-area insets. Sections are full-width bands with fluid vertical padding (band spacing) alternating white, pale leaf and forest panel. Headings usually take the first five columns and copy the next seven; projects pair copy with a portrait video, flipping sides on alternate rows above 861px. Groups of figures (reels, project photo pairs, quotes) step downward with increasing top margins, echoing a roof pitch.
 
-Breakpoints: at 1000px the nav collapses to a menu button with a pale-leaf drop-down and a full-width green WhatsApp action; at 860px the grid stacks to one column, the hero photo moves above the text with a bottom roof cut, and video reels and photo pairs become horizontal scroll-snap rows; at 640px quotes stack; at 480px the header shrinks to 64px. The header is sticky at 76px and shrinks to 60px on a pale-leaf ground after scroll.
+Breakpoints: at 1000px the nav collapses to a menu button with a pale-leaf drop-down and a full-width green WhatsApp action; at 860px the grid stacks to one column, the hero photo moves above the text with a bottom roof cut, and video reels and photo pairs become horizontal scroll-snap rows; at 640px quotes stack; at 480px the header shrinks to 64px. The header is sticky at a constant 68px; after scroll it turns pale leaf and the logo scales to 80% by transform, so nothing below it reflows.
 
 ## Elevation & Depth
 
@@ -247,13 +247,13 @@ Square, confident and few: one fill, one outline.
 Large condensed title-voice tabs stacked in a sticky column (a wrapping row on phones). At rest moss muted on transparent; hover ink on leaf tone; selected white on leaf green.
 
 ### Wall Cross-Section (signature)
-A choice-chip row picks a wall type and redraws a labelled SVG schematic of its layers on white, from "outside" to "inside", each layer named below it. Changing the wall type assembles it from outside to inside: a layer that exists in both types (the outer pine) slides to its new place in 320ms, and each new layer slides in from the outside edge, 110ms apart, on cubic-bezier(.16, 1, .3, 1). It is captioned as a schematic.
+A choice-chip row picks a wall type and redraws a labelled SVG schematic of its layers on white, from "outside" to "inside", each layer named below it. Changing the wall type assembles it from outside to inside: a layer that exists in both types (the outer pine) slides to its new place in 260ms, and each new layer slides in from the outside edge in 300ms, 70ms apart, on the shared ease-out curve cubic-bezier(.23, 1, .32, 1). Changes made from the keyboard redraw without motion. It is captioned as a schematic.
 
 ### Quote Builder
 Choice chips and three fields compose a WhatsApp message shown live in a pale-leaf preview box, with a solid button that opens WhatsApp. It sends nothing itself.
 
 ### Video Tile
-Portrait 9:16 video on a forest well with a 76px white square play button carrying a CSS triangle over the whole frame; the button scales up and turns light leaf on hover and fades out while playing. The play button is the tile's only keyboard stop: native controls appear once the video plays and leave when it ends. The poster is a WebP still, applied about 800px before the tile reaches the screen, so posters never load with the first view.
+Portrait 9:16 video on a forest well with a 76px white square play button carrying a CSS triangle over the whole frame; the button scales up and turns light leaf on mouse hover, presses to 94% on tap, and fades out while playing. The play button is the tile's only keyboard stop: native controls appear once the video plays and leave when it ends. The poster is a WebP still, applied about 800px before the tile reaches the screen, so posters never load with the first view.
 
 ## Do's and Don'ts
 

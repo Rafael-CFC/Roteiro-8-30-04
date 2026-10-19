@@ -27,13 +27,16 @@
     },
     "shadows": [],
     "motion": [
-      { "name": "ease", "value": "cubic-bezier(.2, .7, .2, 1)", "purpose": "Default easing for lifts, entrances and image zoom." },
+      { "name": "ease", "value": "cubic-bezier(.23, 1, .32, 1)", "purpose": "Shared ease-out for entrances, lifts, presses, image zoom and the wall assembly." },
+      { "name": "press", "value": "scale(.97) on :active, transform .16s", "purpose": "Every pressable control (buttons, chips, tabs, play, copy, lightbox controls) answers the press." },
+      { "name": "hover-gate", "value": "@media (hover: hover) and (pointer: fine)", "purpose": "Hover lifts and zooms run only with a mouse, so taps never leave a stuck hover." },
+      { "name": "keyboard-still", "value": "no animation for keyboard-initiated changes", "purpose": "Arrow keys on tabs, wall chips and the lightbox switch instantly." },
       { "name": "state", "value": ".2s", "purpose": "Color and lift transitions on buttons, chips, tabs, fields." },
       { "name": "rise", "value": "translateY(26px) to none, opacity 0 to 1, .9s, staggered .1s", "purpose": "Hero text entrance." },
       { "name": "settle", "value": "scale(1.09) to none, 1.8s", "purpose": "Hero photo settle on load." },
       { "name": "slide", "value": "translateY(32px) to none, view() timeline, entry 0% to 45%", "purpose": "Section parts rise on scroll where scroll timelines are supported." },
-      { "name": "wall-assembly", "value": "kept layer translateX to none 320ms; new layers translateX(-28px) and opacity to none 380ms, staggered 110ms, cubic-bezier(.16, 1, .3, 1)", "purpose": "The wall cross-section is built from outside to inside when its type changes." },
-      { "name": "feedback-flash", "value": "background #DDEBD6 to #EEF5EA, 450ms ease-out", "purpose": "Quote preview box confirms each chosen option." },
+      { "name": "wall-assembly", "value": "kept layer translateX to none 260ms; new layers translateX(-28px) and opacity to none 300ms, staggered 70ms, cubic-bezier(.23, 1, .32, 1)", "purpose": "The wall cross-section is built from outside to inside when its type changes." },
+      { "name": "feedback-flash", "value": "background --tone to --bg-alt, 300ms ease-out", "purpose": "Quote preview box confirms each chosen option." },
       { "name": "menu-drop", "value": "clip-path inset(0 0 100% 0) to inset(0), .22s", "purpose": "Phone menu opens top-down." },
       { "name": "reduced-motion", "value": "entrance, settle, slide, menu drop and hover lifts off; color and opacity transitions kept", "purpose": "Travel removed under prefers-reduced-motion, state feedback kept." }
     ],
@@ -98,7 +101,7 @@
       "refersTo": "nav-link",
       "description": "White bar, muted label links with a leaf-green underline that grows from the left, compact WhatsApp button.",
       "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"true\">Quem somos</a><a href=\"#\">Sistemas</a><a href=\"#\">Projetos</a><a href=\"#\">Obras</a><a href=\"#\">Contato</a><a class=\"ds-nav-cta\" href=\"#\">WhatsApp</a></nav>",
-      "css": ".ds-nav { display: flex; align-items: center; gap: 26px; padding: 0 24px; height: 76px; background: #FFFFFF; font-family: Archivo, 'Arial Narrow', Arial, sans-serif; } .ds-nav a { position: relative; padding: 6px 0; font-size: 15px; font-weight: 500; color: var(--muted, #3F5536); text-decoration: none; transition: color .2s; } .ds-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--green, #2D7A28); transform: scaleX(0); transform-origin: 0 50%; transition: transform .25s ease; } .ds-nav a:hover, .ds-nav a[aria-current] { color: var(--ink, #17260F); } .ds-nav a:hover::after, .ds-nav a[aria-current]::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; } .ds-nav .ds-nav-cta { margin-left: auto; padding: 12px 20px; min-height: 46px; display: inline-flex; align-items: center; background: var(--green, #2D7A28); color: #FFFFFF; font-weight: 600; } .ds-nav .ds-nav-cta::after { display: none; } .ds-nav .ds-nav-cta:hover { background: var(--green-hover, #22601F); color: #FFFFFF; }"
+      "css": ".ds-nav { display: flex; align-items: center; gap: 26px; padding: 0 24px; height: 68px; background: #FFFFFF; font-family: Archivo, 'Arial Narrow', Arial, sans-serif; } .ds-nav a { position: relative; padding: 6px 0; font-size: 15px; font-weight: 500; color: var(--muted, #3F5536); text-decoration: none; transition: color .2s; } .ds-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--green, #2D7A28); transform: scaleX(0); transform-origin: 0 50%; transition: transform .2s cubic-bezier(.23, 1, .32, 1); } .ds-nav a:hover, .ds-nav a[aria-current] { color: var(--ink, #17260F); } .ds-nav a:hover::after, .ds-nav a[aria-current]::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; } .ds-nav .ds-nav-cta { margin-left: auto; padding: 12px 20px; min-height: 46px; display: inline-flex; align-items: center; background: var(--green, #2D7A28); color: #FFFFFF; font-weight: 600; } .ds-nav .ds-nav-cta::after { display: none; } .ds-nav .ds-nav-cta:hover { background: var(--green-hover, #22601F); color: #FFFFFF; }"
     },
     {
       "name": "System Tabs",
