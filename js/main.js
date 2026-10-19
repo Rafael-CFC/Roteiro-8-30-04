@@ -73,12 +73,21 @@
   /* vídeos: botão de play grande, um por vez, sequência da cobertura */
   var all = $$('video'), seq = $$('#reel video');
   function tryPlay(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  /* a capa só baixa quando o vídeo chega perto da tela */
+  function setPoster(v) { var src = v.getAttribute('data-poster'); if (src) { v.poster = src; v.removeAttribute('data-poster'); } }
+  if ('IntersectionObserver' in window) {
+    var po = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { setPoster(e.target); po.unobserve(e.target); } });
+    }, { rootMargin: '800px 0px' });
+    all.forEach(function (v) { po.observe(v); });
+  } else all.forEach(setPoster);
+  /* cada vídeo é uma parada só no teclado: o botão de play; os controles aparecem quando ele toca */
   all.forEach(function (v) {
     var box = v.parentNode, btn = $('.vplay', box);
     if (btn) btn.addEventListener('click', function () { tryPlay(v); v.focus && v.focus({ preventScroll: true }); });
-    v.addEventListener('play', function () { box.classList.add('is-playing'); all.forEach(function (o) { if (o !== v) o.pause(); }); });
+    v.addEventListener('play', function () { v.controls = true; box.classList.add('is-playing'); all.forEach(function (o) { if (o !== v) o.pause(); }); });
     v.addEventListener('pause', function () { if (v.ended || v.currentTime === 0) box.classList.remove('is-playing'); });
-    v.addEventListener('ended', function () { box.classList.remove('is-playing'); });
+    v.addEventListener('ended', function () { box.classList.remove('is-playing'); v.controls = false; });
   });
   var reel = $('#reel'), dots = $$('#reelDots button');
   function goReel(i, smooth) {
@@ -143,7 +152,8 @@
     pet: { cap: 'Parede dupla com lã de PET: pinus por fora e por dentro, com isolamento no meio.', layers: [['wood', 100, 'Pinus externo', 'ext'], ['pet', 170, 'Lã de PET', 'pet'], ['wood', 100, 'Pinus interno', 'int']] },
     drywall: { cap: 'Parede dupla com drywall: pinus por fora, a estrutura no meio e a placa de drywall do lado de dentro.', layers: [['wood', 100, 'Pinus externo', 'ext'], ['frame', 130, 'Estrutura', 'frame'], ['dry', 60, 'Drywall', 'dry']] }
   };
-  var FONT = 'Archivo, Arial, sans-serif';
+  var FONT = 'Archivo, Arial, sans-serif', root = getComputedStyle(document.documentElement);
+  var INK = root.getPropertyValue('--ink').trim(), MUTED = root.getPropertyValue('--muted').trim();
   function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
   /* a parede é montada de fora para dentro: a camada que já existia desliza até o novo lugar,
      as novas entram pelo lado de fora, uma depois da outra */
@@ -161,8 +171,8 @@
     /* em telas estreitas, a parede inteira encolhe para caber */
     if (total > W - 8) { widths = widths.map(function (v) { return v * (W - 8) / total; }); total = W - 8; }
     var x = (W - total) / 2, top = 40, h = 140;
-    svg.appendChild(el('text', { x: 16, y: 26, fill: '#3F5536', 'font-size': 15, 'font-family': FONT })).textContent = 'Lado de fora';
-    svg.appendChild(el('text', { x: W - 16, y: 26, fill: '#3F5536', 'font-size': 15, 'text-anchor': 'end', 'font-family': FONT })).textContent = 'Lado de dentro';
+    svg.appendChild(el('text', { x: 16, y: 26, fill: MUTED, 'font-size': 15, 'font-family': FONT })).textContent = 'Lado de fora';
+    svg.appendChild(el('text', { x: W - 16, y: 26, fill: MUTED, 'font-size': 15, 'text-anchor': 'end', 'font-family': FONT })).textContent = 'Lado de dentro';
     w.layers.forEach(function (l, i) {
       var g = el('g', {}), lw = widths[i];
       if (l[0] === 'wood') {
@@ -180,7 +190,7 @@
         g.appendChild(el('rect', { x: x, y: top, width: lw, height: h, fill: '#ECECE4' }));
         g.appendChild(el('rect', { x: x + 5, y: top, width: lw - 10, height: h, fill: '#DCDCD2' }));
       }
-      var lab = el('text', { x: x + lw / 2, y: top + h + 30, fill: '#17260F', 'font-size': fs, 'font-weight': 600, 'text-anchor': 'middle', 'font-family': FONT });
+      var lab = el('text', { x: x + lw / 2, y: top + h + 30, fill: INK, 'font-size': fs, 'font-weight': 600, 'text-anchor': 'middle', 'font-family': FONT });
       lab.textContent = l[2]; g.appendChild(lab);
       geo[l[3]] = x;
       if (play && !rm && g.animate) {
@@ -205,17 +215,20 @@
   if (orc) {
     var prev = $('#orcPrev'), go = $('#orcGo'), area = $('#orcArea'), local = $('#orcLocal'), nome = $('#orcNome');
     var pick = function (n) { var c = $('input[name="' + n + '"]:checked', orc); return c ? c.value : ''; };
-    var box = prev.parentNode;
+    var box = prev.parentNode, css = getComputedStyle(document.documentElement);
+    var flash = [css.getPropertyValue('--tone').trim(), css.getPropertyValue('--bg-alt').trim()];
     var msg = function (e) {
       var a = parseInt(area.value, 10), ok = a >= 10 && a <= 3000;
-      area.setAttribute('aria-invalid', String(area.value !== '' && !ok));
+      var bad = area.value !== '' && !ok;
+      area.setAttribute('aria-invalid', String(bad));
+      $('#orcAreaErr').hidden = !bad;
       var t = 'Olá, Casas Eco! ' + (nome.value.trim() ? 'Meu nome é ' + nome.value.trim() + '. ' : '') +
         'Quero um orçamento para ' + pick('tipo') + ' ' + pick('sis') + (ok ? ', com cerca de ' + a + ' m²' : '') + '.' +
         (local.value.trim() ? ' Local do terreno: ' + local.value.trim() + '.' : '') + ' Vi o portfólio de vocês no site.';
       prev.textContent = t;
       go.href = 'https://wa.me/5548996754334?text=' + encodeURIComponent(t);
       /* um toque de verde na caixa a cada escolha confirmada, não a cada letra */
-      if (e && e.type === 'change' && box.animate) box.animate([{ backgroundColor: '#DDEBD6' }, { backgroundColor: '#EEF5EA' }], { duration: 450, easing: 'ease-out' });
+      if (e && e.type === 'change' && box.animate) box.animate([{ backgroundColor: flash[0] }, { backgroundColor: flash[1] }], { duration: 450, easing: 'ease-out' });
     };
     orc.addEventListener('input', msg);
     orc.addEventListener('change', msg);

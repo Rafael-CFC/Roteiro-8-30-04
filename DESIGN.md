@@ -12,10 +12,11 @@ colors:
   forest-panel: "#1F4A1C"
   panel-muted: "#C9DEC0"
   light-leaf: "#9BD27A"
+  error: "#A12A1B"
 typography:
   numeral:
     fontFamily: "Archivo, Arial Narrow, Arial, sans-serif"
-    fontSize: "clamp(6.5rem, 20vw, 19rem)"
+    fontSize: "min(clamp(6.5rem, 20vw, 19rem), 24vw)"
     fontWeight: 900
     lineHeight: 0.82
     letterSpacing: "-0.02em"
@@ -49,13 +50,13 @@ typography:
     lineHeight: 1.3
   body:
     fontFamily: "Archivo, Arial Narrow, Arial, sans-serif"
-    fontSize: "clamp(17px, .25vw + 16px, 19px)"
+    fontSize: "clamp(1.0625rem, .25vw + 1rem, 1.1875rem)"
     fontWeight: 400
     lineHeight: 1.6
     fontVariation: "'wdth' 100"
   label:
     fontFamily: "Archivo, Arial Narrow, Arial, sans-serif"
-    fontSize: "15px"
+    fontSize: ".9375rem"
     fontWeight: 600
     lineHeight: 1
 rounded:
@@ -252,7 +253,7 @@ A choice-chip row picks a wall type and redraws a labelled SVG schematic of its 
 Choice chips and three fields compose a WhatsApp message shown live in a pale-leaf preview box, with a solid button that opens WhatsApp. It sends nothing itself.
 
 ### Video Tile
-Portrait 9:16 video on a forest well with a 76px white square play button carrying a CSS triangle; the button scales up and turns light leaf on hover and fades out while playing.
+Portrait 9:16 video on a forest well with a 76px white square play button carrying a CSS triangle over the whole frame; the button scales up and turns light leaf on hover and fades out while playing. The play button is the tile's only keyboard stop: native controls appear once the video plays and leave when it ends. The poster is a WebP still, applied about 800px before the tile reaches the screen, so posters never load with the first view.
 
 ## Do's and Don'ts
 

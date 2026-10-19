@@ -13,7 +13,8 @@
       "leaf-green-deep": { "role": "primary", "displayName": "Deep Leaf", "canonical": "#22601F", "cssVar": "--green-hover", "tonalRamp": ["#143A13", "#236420", "#338F2E", "#42B93C", "#6ACD65", "#96DC93", "#C3EBC1", "#ECF9EC"] },
       "forest-panel": { "role": "secondary", "displayName": "Forest Panel", "canonical": "#1F4A1C", "cssVar": "--panel", "tonalRamp": ["#173815", "#286024", "#398934", "#4AB243", "#71C76B", "#9CD897", "#C6E9C4", "#EDF8EC"] },
       "panel-muted": { "role": "neutral", "displayName": "Panel Muted", "canonical": "#C9DEC0", "cssVar": "--on-panel-muted", "tonalRamp": ["#21321A", "#3A572E", "#537C41", "#6BA154", "#8CB979", "#AFCEA1", "#D1E3C9", "#F1F6EE"] },
-      "light-leaf": { "role": "secondary", "displayName": "Light Leaf", "canonical": "#9BD27A", "cssVar": "--leaf", "tonalRamp": ["#223913", "#3A6322", "#538D30", "#6BB73E", "#8CCB67", "#AFDB94", "#D1EAC2", "#F1F9EC"] }
+      "light-leaf": { "role": "secondary", "displayName": "Light Leaf", "canonical": "#9BD27A", "cssVar": "--leaf", "tonalRamp": ["#223913", "#3A6322", "#538D30", "#6BB73E", "#8CCB67", "#AFDB94", "#D1EAC2", "#F1F9EC"] },
+      "error": { "role": "semantic", "displayName": "Error", "canonical": "#A12A1B", "cssVar": "--error", "purpose": "Form field error text and border only; never an action or decoration." }
     },
     "typographyMeta": {
       "numeral": { "displayName": "Numeral", "purpose": "Experience figures only; 62% width, tabular, the plus sign in light leaf." },
