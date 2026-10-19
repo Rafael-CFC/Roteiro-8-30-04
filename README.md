@@ -12,7 +12,7 @@ js/main.js      interações: menu, contadores, abas, corte da parede, vídeos,
                 galeria, orçamento pelo WhatsApp, copiar número
 fonts/          Archivo (servida do próprio projeto)
 img/            fotos e logo
-video/          vídeos das obras (.mp4, 720p) e suas capas (.jpg)
+video/          vídeos das obras (.mp4, resolução cheia, H.264) e suas capas (.webp)
 PRODUCT.md      quem é o cliente, o que o site precisa provar, compromissos da marca
 DESIGN.md       o sistema visual: cores, tipos, componentes e regras
 .claude/skills/ skills de design usadas no projeto (Impeccable e taste-skill)
