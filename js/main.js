@@ -151,8 +151,12 @@
     /* desenha na largura real, para o texto ficar sempre em 15 a 16px */
     var W = Math.round(svg.getBoundingClientRect().width) || 600, k = Math.min(1.5, W / 520);
     svg.setAttribute('viewBox', '0 0 ' + W + ' 230');
-    var widths = w.layers.map(function (l) { return Math.max(l[1] * k, l[2].length * 8.6 + 14); });
-    var total = widths.reduce(function (a, b) { return a + b; }, 0), x = (W - total) / 2, top = 40, h = 140;
+    var fs = W < 420 ? 14 : 16;
+    var widths = w.layers.map(function (l) { return Math.max(l[1] * k, l[2].length * fs * .54 + 12); });
+    var total = widths.reduce(function (a, b) { return a + b; }, 0);
+    /* em telas estreitas, a parede inteira encolhe para caber */
+    if (total > W - 8) { widths = widths.map(function (v) { return v * (W - 8) / total; }); total = W - 8; }
+    var x = (W - total) / 2, top = 40, h = 140;
     svg.appendChild(el('text', { x: 16, y: 26, fill: '#3F5536', 'font-size': 15, 'font-family': FONT })).textContent = 'Lado de fora';
     svg.appendChild(el('text', { x: W - 16, y: 26, fill: '#3F5536', 'font-size': 15, 'text-anchor': 'end', 'font-family': FONT })).textContent = 'Lado de dentro';
     w.layers.forEach(function (l, i) {
@@ -172,7 +176,7 @@
         g.appendChild(el('rect', { x: x, y: top, width: lw, height: h, fill: '#ECECE4' }));
         g.appendChild(el('rect', { x: x + 5, y: top, width: lw - 10, height: h, fill: '#DCDCD2' }));
       }
-      var lab = el('text', { x: x + lw / 2, y: top + h + 30, fill: '#17260F', 'font-size': 16, 'font-weight': 600, 'text-anchor': 'middle', 'font-family': FONT });
+      var lab = el('text', { x: x + lw / 2, y: top + h + 30, fill: '#17260F', 'font-size': fs, 'font-weight': 600, 'text-anchor': 'middle', 'font-family': FONT });
       lab.textContent = l[2]; g.appendChild(lab);
       if (!rm && g.animate) g.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 420, delay: i * 90, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' });
       svg.appendChild(g); x += lw;

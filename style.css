@@ -217,7 +217,7 @@ h3 { font-size: var(--t-2); }
 .sys button:hover { color: var(--ink); background: var(--tone); }
 .sys button[aria-selected="true"], .sys button[aria-selected="true"]:hover { color: var(--on-green); background: var(--green); }
 .sys-view { grid-column: 6 / span 7; }
-.sys-view figure { margin: 0 0 20px; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg); }
+.sys-view figure:not(.wall-fig) { margin: 0 0 20px; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg); }
 .sys-view img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .sys-view p { margin: 0 0 .8em; max-width: 52ch; }
 .sys-view [role="tabpanel"]:not([hidden]) { animation: fade .45s ease both; }
@@ -317,6 +317,7 @@ h3 { font-size: var(--t-2); }
 .field { display: grid; gap: 8px; font-weight: 700; }
 .field span { font-size: var(--t-5); }
 .field input {
+  caret-color: var(--green);
   width: 100%; min-height: 50px; padding: 0 14px; font: 400 var(--t-4) var(--f); color: var(--ink);
   background: var(--bg-alt); border: 2px solid var(--bg-alt); border-radius: 0; transition: border-color .2s, background-color .2s;
 }
