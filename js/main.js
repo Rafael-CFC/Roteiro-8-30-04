@@ -44,7 +44,7 @@
         links.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    secs.forEach(function (s) { if (s) so.observe(s); });
+    $$('main > section').forEach(function (s) { so.observe(s); });
   }
 
   /* entrada das partes de cada seção, em sequência */
@@ -172,13 +172,15 @@
     var w = WALLS[type]; if (!svg || !w) return;
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     /* desenha na largura real, para o texto ficar sempre em 15px */
-    var W = Math.round(svg.getBoundingClientRect().width) || 600, k = Math.min(1, W / 600);
-    svg.setAttribute('viewBox', '0 0 ' + W + ' 200');
-    var total = w.layers.reduce(function (s, l) { return s + l[1] * k; }, 0), x = (W - total) / 2, top = 38, h = 110;
+    var W = Math.round(svg.getBoundingClientRect().width) || 600, k = Math.min(1.5, W / 520);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' 230');
+    /* cada camada tem pelo menos a largura do próprio rótulo */
+    var widths = w.layers.map(function (l) { return Math.max(l[1] * k, l[2].length * 8.6 + 14); });
+    var total = widths.reduce(function (s, v) { return s + v; }, 0), x = (W - total) / 2, top = 40, h = 140;
     svg.appendChild(el('text', { x: 16, y: 26, fill: '#3B5040', 'font-size': 15, 'font-family': 'Schibsted Grotesk, Arial, sans-serif' })).textContent = 'Lado de fora';
     svg.appendChild(el('text', { x: W - 16, y: 26, fill: '#3B5040', 'font-size': 15, 'text-anchor': 'end', 'font-family': 'Schibsted Grotesk, Arial, sans-serif' })).textContent = 'Lado de dentro';
     w.layers.forEach(function (l, i) {
-      var g = el('g', { class: 'lyr' }), lw = l[1] * k;
+      var g = el('g', { class: 'lyr' }), lw = widths[i];
       if (l[0] === 'wood') {
         g.appendChild(el('rect', { x: x, y: top, width: lw, height: h, fill: '#C79E5B' }));
         for (var gx = x + 10; gx < x + lw - 4; gx += 14) g.appendChild(el('path', { d: 'M' + gx + ' ' + top + ' q 5 ' + h / 2 + ' 0 ' + h, stroke: '#A47A38', 'stroke-width': 2, fill: 'none' }));
@@ -194,7 +196,7 @@
         g.appendChild(el('rect', { x: x, y: top, width: lw, height: h, fill: '#F4F4EF' }));
         g.appendChild(el('rect', { x: x + 4, y: top, width: lw - 8, height: h, fill: '#E2E2DA' }));
       }
-      var lab = el('text', { x: x + lw / 2, y: top + h + (i % 2 ? 46 : 26), fill: '#12301F', 'font-size': 15, 'font-weight': 600, 'text-anchor': 'middle', 'font-family': 'Schibsted Grotesk, Arial, sans-serif' });
+      var lab = el('text', { x: x + lw / 2, y: top + h + 30, fill: '#12301F', 'font-size': 16, 'font-weight': 600, 'text-anchor': 'middle', 'font-family': 'Schibsted Grotesk, Arial, sans-serif' });
       lab.textContent = l[2]; g.appendChild(lab);
       if (!rm && g.animate) g.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 420, delay: i * 90, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' });
       svg.appendChild(g); x += lw;
@@ -205,13 +207,6 @@
   $$('.wall input').forEach(function (r) { r.addEventListener('change', function () { if (r.checked) drawWall(wallType = r.value); }); });
   drawWall(wallType);
   addEventListener('resize', function () { drawWall(wallType); });
-
-  /* onde construímos: um lugar aceso por vez */
-  var pls = $$('.pl'), pi = 0;
-  if (pls.length) {
-    pls[0].classList.add('is-lit');
-    setInterval(function () { pls[pi].classList.remove('is-lit'); pi = (pi + 1) % pls.length; pls[pi].classList.add('is-lit'); }, 2000);
-  }
 
   /* fotos: arrastar a fila com o mouse */
   var row = $('#gal'), drag = null, moved = false;

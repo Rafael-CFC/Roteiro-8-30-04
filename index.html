@@ -62,27 +62,16 @@
     </div>
   </section>
 
-  <!-- Números -->
-  <section class="figures" id="numeros" aria-labelledby="h-num">
-    <div class="figures-in">
-      <h2 class="h" id="h-num" data-rise>A obra em números</h2>
-      <dl class="figures-list">
-        <div data-rise><dt>150+</dt><dd>obras realizadas em Garopaba e região, de chalés a pousadas.</dd></div>
-        <div data-rise><dt>20+</dt><dd>anos no mercado, com sede e estrutura própria em Campo Duna.</dd></div>
-        <div data-rise><dt>30 dias</dt><dd>para o chalé A-frame da Praia do Rosa ficar pronto, com 60,33 m².</dd></div>
-        <div data-rise><dt>210 m²</dt><dd>da pousada com vista pra lagoa: dois lofts em 90 dias e a pousada inteira em 150.</dd></div>
-      </dl>
-      <figure class="figures-ph" data-rise><img src="img/aerea.jpg" width="1400" height="786" loading="lazy" alt="Vista aérea de uma casa de madeira construída pela Casas Eco"></figure>
-    </div>
-  </section>
-
   <!-- Projetos: cada obra é um lote, o título rasga na emenda e se junta no meio -->
   <section class="lots" id="projetos" aria-labelledby="h-proj">
-    <h2 class="h lots-h" id="h-proj">Projetos</h2>
+    <div class="lots-intro">
+      <h2 class="h" id="h-proj" data-rise>Projetos</h2>
+      <p data-rise>Cinco obras entregues pela Casas Eco, cada uma com local, área e prazo. Role para passar de um lote ao outro e toque para ver o vídeo.</p>
+    </div>
 
     <article class="lot" aria-labelledby="t-aframe">
       <div class="lot-stage">
-        <div class="lot-pane lot-pane--l"><img src="video/chale-aframe-quadro.jpg" width="720" height="1280" loading="lazy" alt="Deck com piscina do chalé A-frame"></div>
+        <div class="lot-pane lot-pane--l"><img src="video/chale-aframe-quadro.jpg" width="720" height="1280" loading="lazy" alt="Deck de madeira com piscina e mesa do chalé A-frame"></div>
         <div class="lot-pane lot-pane--r vid">
           <video playsinline preload="none" poster="video/chale-aframe.jpg" src="video/chale-aframe.mp4" aria-label="Vídeo do chalé A-frame"></video>
           <button class="vplay" type="button" aria-label="Assistir: chalé A-frame"><span aria-hidden="true"></span></button>
@@ -121,7 +110,7 @@
 
     <article class="lot" aria-labelledby="t-casa164">
       <div class="lot-stage">
-        <div class="lot-pane lot-pane--l"><img src="video/casa-2-pisos-quadro.jpg" width="720" height="1280" loading="lazy" alt="Casa de madeira de dois pisos vista do alto, com telhado claro"></div>
+        <div class="lot-pane lot-pane--l"><img src="video/casa-2-pisos-quadro.jpg" width="720" height="768" loading="lazy" alt="Casa de madeira de dois pisos vista do alto, com telhado claro"></div>
         <div class="lot-pane lot-pane--r vid">
           <video playsinline preload="none" poster="video/casa-2-pisos.jpg" src="video/casa-2-pisos.mp4" aria-label="Vídeo da casa de 2 pisos com 164 m²"></video>
           <button class="vplay" type="button" aria-label="Assistir: casa de 2 pisos"><span aria-hidden="true"></span></button>
@@ -139,7 +128,7 @@
 
     <article class="lot" aria-labelledby="t-chale76">
       <div class="lot-stage">
-        <div class="lot-pane lot-pane--l"><img src="video/chale-76-quadro.jpg" width="720" height="1280" loading="lazy" alt="Fachada do chalé em pinus com janelas de vidro do piso ao telhado"></div>
+        <div class="lot-pane lot-pane--l"><img src="video/chale-76-quadro.jpg" width="720" height="1280" loading="lazy" alt="Chalé de 76 m² em pinus, com telhado inclinado e deck"></div>
         <div class="lot-pane lot-pane--r vid">
           <video playsinline preload="none" poster="video/chale-76.jpg" src="video/chale-76.mp4" aria-label="Vídeo do chalé de 76 m²"></video>
           <button class="vplay" type="button" aria-label="Assistir: chalé de 76 m²"><span aria-hidden="true"></span></button>
@@ -285,15 +274,22 @@
     </div>
   </section>
 
-  <!-- Onde construímos -->
+  <!-- Onde já construímos: cada lugar carimbado como um lote -->
   <section class="places" id="onde" aria-labelledby="h-onde">
-    <h2 class="h" id="h-onde" data-rise>Onde já construímos</h2>
-    <p class="places-line" data-rise>Casas, chalés e pousadas na <span class="pl">Praia do Rosa</span>, na <span class="pl">Encantada</span>, em <span class="pl">Imbituba</span> e em toda a região de <span class="pl">Garopaba</span>.</p>
+    <div class="places-col">
+      <h2 class="h" id="h-onde" data-rise>Onde já construímos</h2>
+      <ul class="places-list">
+        <li data-rise><span class="place">Praia do Rosa</span><span class="place-d">Chalé A-frame e pousada com vista pra lagoa</span></li>
+        <li data-rise><span class="place">Encantada</span><span class="place-d">Casa de cliente, da fundação aos retoques finais</span></li>
+        <li data-rise><span class="place">Garopaba</span><span class="place-d">Mais de 150 obras na região, com sede em Campo Duna</span></li>
+      </ul>
+    </div>
+    <figure class="places-ph" data-rise><img src="img/aerea.jpg" width="1400" height="786" loading="lazy" alt="Vista aérea de uma casa de madeira construída pela Casas Eco na região de Garopaba"></figure>
   </section>
 
   <!-- Portfólio de fotos -->
   <section class="strip" id="obras" aria-labelledby="h-obras">
-    <h2 class="strip-h" id="h-obras">Portfólio de obras <span>14 fotos</span></h2>
+    <h2 class="h strip-h" id="h-obras">Portfólio de obras <span>14 fotos</span></h2>
     <div class="strip-row" id="gal" tabindex="0" aria-label="Fotos das obras, role para o lado">
       <button type="button" aria-haspopup="dialog" aria-label="Ampliar: casa de dois pavimentos com deck"><img src="img/g037.jpg" width="1041" height="781" loading="lazy" alt="Casa de madeira de dois pavimentos, com deck e varanda ampla"></button>
       <button type="button" aria-haspopup="dialog" aria-label="Ampliar: casa escura com deck amarelo"><img src="img/g066.jpg" width="1200" height="1600" loading="lazy" alt="Casa de madeira escura com dois pavimentos e deck amarelo"></button>
@@ -317,6 +313,7 @@
     <h2 class="h voices-h" id="h-cli">O que dizem os clientes</h2>
     <figure class="voice-lead" data-rise>
       <blockquote><p>Estamos muito satisfeitos com a qualidade do produto, a mão de obra e todo o processo da construção.</p></blockquote>
+      <figcaption>Silvana Thormann, sobre a casa na Encantada</figcaption>
     </figure>
     <figure class="voice voice--l" data-rise>
       <blockquote><p>Realizamos a construção da nossa casa na Encantada com a Casas Eco, desde a fundação até os retoques mais finos. Sr Guilherme nos prestou um excelente atendimento, sem falar na qualidade técnica que ele possui.</p></blockquote>
