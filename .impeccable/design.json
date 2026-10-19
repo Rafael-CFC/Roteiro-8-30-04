@@ -60,7 +60,7 @@
       "kind": "button",
       "refersTo": "button-solid",
       "description": "The one filled action on light ground: square, leaf green, lifts on hover.",
-      "html": "<a class=\"ds-btn ds-btn-solid\" href=\"#\">Conheça nossos projetos</a>",
+      "html": "<a class=\"ds-btn ds-btn-solid\" href=\"#\">Ver as obras</a>",
       "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 15px 26px; font: 600 1rem/1 Archivo, 'Arial Narrow', Arial, sans-serif; border: 2px solid transparent; border-radius: 0; text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s, transform .2s cubic-bezier(.2,.7,.2,1); } .ds-btn-solid { background: var(--green, #2D7A28); color: #FFFFFF; } .ds-btn-solid:hover { background: var(--green-hover, #22601F); transform: translateY(-2px); } .ds-btn-solid:active { transform: translateY(0) scale(.98); } .ds-btn-solid:focus-visible { outline: 3px solid var(--green, #2D7A28); outline-offset: 3px; }"
     },
     {

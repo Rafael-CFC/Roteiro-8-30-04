@@ -10,13 +10,11 @@
   function byPointer() { return Date.now() - lastPointer < 800; }
 
   /* barra, progresso e menu */
-  var bar = $('#bar'), pg = $('#pg'), mb = $('#menuBtn'), nv = $('#nav'), mt = $('.menu-txt');
-  function onScroll() {
-    var y = window.scrollY || 0, m = document.documentElement.scrollHeight - innerHeight;
-    bar.classList.toggle('is-small', y > 40);
-    pg.style.transform = 'scaleX(' + (m > 0 ? Math.min(y / m, 1) : 0) + ')';
+  var bar = $('#bar'), mb = $('#menuBtn'), nv = $('#nav'), mt = $('.menu-txt');
+  /* a barra encolhe quando a marca do topo sai da tela; o progresso é só CSS */
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { bar.classList.toggle('is-small', !es[0].isIntersecting); }).observe($('#topMark'));
   }
-  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
   function setMenu(o) {
     nv.classList.toggle('open', o); mb.setAttribute('aria-expanded', String(o));
     mb.classList.toggle('is-open', o); mt.textContent = o ? 'Fechar' : 'Menu';
@@ -101,12 +99,16 @@
     if (reel.scrollWidth > reel.clientWidth + 2) reel.scrollTo({ left: f.offsetLeft - reel.offsetLeft - parseFloat(getComputedStyle(reel).paddingLeft || 0), behavior: smooth && !rm ? 'smooth' : 'auto' });
   }
   dots.forEach(function (d, i) { d.addEventListener('click', function () { goReel(i, true); }); });
-  function syncDots() {
-    var best = 0, bd = 1e9, c = reel.scrollLeft;
-    [].forEach.call(reel.children, function (f, i) { var d = Math.abs(f.offsetLeft - reel.offsetLeft - parseFloat(getComputedStyle(reel).paddingLeft || 0) - c); if (d < bd) { bd = d; best = i; } });
-    dots.forEach(function (d, i) { if (i === best) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+  /* o ponto ativo segue o vídeo que está mais à vista no carrossel */
+  if ('IntersectionObserver' in window) {
+    var seen = [];
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { seen[[].indexOf.call(reel.children, e.target)] = e.intersectionRatio; });
+      var best = 0; seen.forEach(function (r, i) { if (r > (seen[best] || 0)) best = i; });
+      dots.forEach(function (d, i) { if (i === best) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+    }, { root: reel, threshold: [0, .25, .5, .75, 1] });
+    [].forEach.call(reel.children, function (f) { ro.observe(f); });
   }
-  reel.addEventListener('scroll', function () { requestAnimationFrame(syncDots); }, { passive: true });
   seq.forEach(function (v, i) {
     v.addEventListener('ended', function () {
       var n = seq[i + 1]; if (!n) return;

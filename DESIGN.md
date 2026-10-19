@@ -197,7 +197,7 @@ A two-green palette on white: a bright leaf for action, a deep forest for panels
 
 ## Layout
 
-A 12-column grid (24px column gap, fluid row gap) inside a 1248px container with 24px minimum side padding that respects safe-area insets. Sections are full-width bands with fluid vertical padding (band spacing) alternating white, pale leaf and forest panel. Headings usually take the first five columns and copy the next seven; projects pair copy with a portrait video, flipping sides on alternate rows above 861px. Groups of figures (reels, project photo pairs, quotes) step downward with increasing top margins, echoing a roof pitch.
+A 12-column grid (24px column gap, fluid row gap) inside a 1248px container with 24px minimum side padding that respects safe-area insets. Sections are full-width bands with fluid vertical padding (band spacing) alternating white, pale leaf and forest panel. Headings usually take the first five columns and copy the next seven; projects pair copy (left) with a portrait video (right) on every single-video row, so the eye reads them as one list; the pousada row with three videos is the only break. Groups of figures (reels, project photo pairs, quotes) step downward with increasing top margins, echoing a roof pitch.
 
 Breakpoints: at 1000px the nav collapses to a menu button with a pale-leaf drop-down and a full-width green WhatsApp action; at 860px the grid stacks to one column, the hero photo moves above the text with a bottom roof cut, and video reels and photo pairs become horizontal scroll-snap rows; at 640px quotes stack; at 480px the header shrinks to 64px. The header is sticky at a constant 68px; after scroll it turns pale leaf and the logo scales to 80% by transform, so nothing below it reflows.
 
@@ -240,7 +240,7 @@ Square, confident and few: one fill, one outline.
 - **Focus:** border turns leaf green and the fill turns white; hover shows the border in leaf tone. The caret is leaf green.
 
 ### Navigation
-- **Style:** white sticky bar with the logo at left and five label-size links in moss muted at right, plus the bar button. Hover and current link turn ink and grow a 2px leaf-green underline from the left. A 3px leaf-green progress bar tracks scroll at the very top.
+- **Style:** white sticky bar with the logo at left and five label-size links in moss muted at right, plus the bar button. Hover and current link turn ink and grow a 2px leaf-green underline from the left. A 3px leaf-green progress bar tracks scroll at the very top, driven by a CSS scroll timeline (absent where the browser lacks it); the bar tints and the logo shrinks when an invisible 40px top marker leaves the viewport (IntersectionObserver, no scroll listener).
 - **Mobile:** a pale-leaf "menu" button with a two-line icon that crosses to an X; the drop-down is a pale-leaf sheet with full-size links and a full-width solid WhatsApp action.
 
 ### System Tabs
