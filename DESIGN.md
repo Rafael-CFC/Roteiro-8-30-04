@@ -134,7 +134,7 @@ A builder's portfolio that reads like the houses it shows: real photographs and 
 
 One type family, Archivo, does all the work by changing width: condensed (62 to 70%) and heavy for headings, project data and the big numbers; normal width for reading text. Corners are square throughout. Density is calm on the band level (generous vertical padding) and compact inside components (tight chips, square buttons, stacked data).
 
-Motion is gentle and limited to entrance: the hero rises, the hero photo settles, section parts rise on scroll where scroll timelines exist. Videos and photos stay fixed in the layout; nothing is pinned or scroll-linked.
+Motion is gentle: the hero rises, the hero photo settles, section parts rise on scroll where scroll timelines exist. The one authored moment is the wall cross-section assembling from outside to inside. Controls answer with color: the quote preview box flashes leaf tone on each confirmed choice, the copy button turns light leaf when the number is copied, the phone menu opens with a quick top-down clip reveal. Videos and photos stay fixed in the layout; nothing is pinned or scroll-linked.
 
 **Key Characteristics:**
 - Green and white only: white ground, pale-leaf alternate bands, forest-green panels.
@@ -246,7 +246,7 @@ Square, confident and few: one fill, one outline.
 Large condensed title-voice tabs stacked in a sticky column (a wrapping row on phones). At rest moss muted on transparent; hover ink on leaf tone; selected white on leaf green.
 
 ### Wall Cross-Section (signature)
-A choice-chip row picks a wall type and redraws a labelled SVG schematic of its layers on white, from "outside" to "inside", each layer named below it. Layers enter with a short staggered rise. It is captioned as a schematic.
+A choice-chip row picks a wall type and redraws a labelled SVG schematic of its layers on white, from "outside" to "inside", each layer named below it. Changing the wall type assembles it from outside to inside: a layer that exists in both types (the outer pine) slides to its new place in 320ms, and each new layer slides in from the outside edge, 110ms apart, on cubic-bezier(.16, 1, .3, 1). It is captioned as a schematic.
 
 ### Quote Builder
 Choice chips and three fields compose a WhatsApp message shown live in a pale-leaf preview box, with a solid button that opens WhatsApp. It sends nothing itself.
@@ -262,7 +262,7 @@ Portrait 9:16 video on a forest well with a 76px white square play button carryi
 - **Do** keep every corner square (0 radius).
 - **Do** separate sections by alternating white, pale leaf and forest bands, and use the roof-angle cut where a panel band overlaps the band above.
 - **Do** cap reading text at 62ch and lead lines near 30 to 34ch.
-- **Do** keep motion to entrance rises and the hero photo settle, and honor reduced motion.
+- **Do** keep motion to entrance rises, the hero photo settle, the wall assembly and color feedback on controls; under reduced motion remove travel but keep color and opacity changes that show state.
 
 ### Don't:
 - **Don't** add shadows to any surface, button or image.

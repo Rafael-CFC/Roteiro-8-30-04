@@ -132,21 +132,25 @@
   var cb = $('#copyWa');
   if (cb) cb.addEventListener('click', function () {
     var num = $('#waNum'), txt = num.textContent;
-    function done(ok) { cb.textContent = ok ? 'Copiado' : 'Selecione o número'; setTimeout(function () { cb.textContent = 'Copiar número'; }, 2000); }
+    function done(ok) { cb.textContent = ok ? 'Copiado' : 'Selecione o número'; cb.classList.toggle('is-done', ok); setTimeout(function () { cb.textContent = 'Copiar número'; cb.classList.remove('is-done'); }, 2000); }
     function sel() { var r = document.createRange(); r.selectNodeContents(num); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done(false); }
     try { navigator.clipboard.writeText(txt).then(function () { done(true); }, sel); } catch (e) { sel(); }
   });
   /* o corte da parede: camadas do lado de fora para o lado de dentro */
   var NS = 'http://www.w3.org/2000/svg', svg = $('#wallSvg'), cap = $('#wallCap'), wallType = 'simples';
   var WALLS = {
-    simples: { cap: 'Parede simples: uma camada de pinus autoclavado.', layers: [['wood', 150, 'Pinus autoclavado']] },
-    pet: { cap: 'Parede dupla com lã de PET: pinus por fora e por dentro, com isolamento no meio.', layers: [['wood', 100, 'Pinus externo'], ['pet', 170, 'Lã de PET'], ['wood', 100, 'Pinus interno']] },
-    drywall: { cap: 'Parede dupla com drywall: pinus por fora, a estrutura no meio e a placa de drywall do lado de dentro.', layers: [['wood', 100, 'Pinus externo'], ['frame', 130, 'Estrutura'], ['dry', 60, 'Drywall']] }
+    simples: { cap: 'Parede simples: uma camada de pinus autoclavado.', layers: [['wood', 150, 'Pinus autoclavado', 'ext']] },
+    pet: { cap: 'Parede dupla com lã de PET: pinus por fora e por dentro, com isolamento no meio.', layers: [['wood', 100, 'Pinus externo', 'ext'], ['pet', 170, 'Lã de PET', 'pet'], ['wood', 100, 'Pinus interno', 'int']] },
+    drywall: { cap: 'Parede dupla com drywall: pinus por fora, a estrutura no meio e a placa de drywall do lado de dentro.', layers: [['wood', 100, 'Pinus externo', 'ext'], ['frame', 130, 'Estrutura', 'frame'], ['dry', 60, 'Drywall', 'dry']] }
   };
   var FONT = 'Archivo, Arial, sans-serif';
   function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
-  function drawWall(type) {
+  /* a parede é montada de fora para dentro: a camada que já existia desliza até o novo lugar,
+     as novas entram pelo lado de fora, uma depois da outra */
+  var lastGeo = {};
+  function drawWall(type, play) {
     var w = WALLS[type]; if (!svg || !w) return;
+    var geo = {}, fresh = 0, ease = 'cubic-bezier(.16, 1, .3, 1)';
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     /* desenha na largura real, para o texto ficar sempre em 15 a 16px */
     var W = Math.round(svg.getBoundingClientRect().width) || 600, k = Math.min(1.5, W / 520);
@@ -178,12 +182,19 @@
       }
       var lab = el('text', { x: x + lw / 2, y: top + h + 30, fill: '#17260F', 'font-size': fs, 'font-weight': 600, 'text-anchor': 'middle', 'font-family': FONT });
       lab.textContent = l[2]; g.appendChild(lab);
-      if (!rm && g.animate) g.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 420, delay: i * 90, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'backwards' });
+      geo[l[3]] = x;
+      if (play && !rm && g.animate) {
+        var was = lastGeo[l[3]];
+        if (was !== undefined) g.animate([{ transform: 'translateX(' + (was - x) + 'px)' }, { transform: 'none' }], { duration: 320, easing: ease });
+        else g.animate([{ opacity: 0, transform: 'translateX(-28px)' }, { opacity: 1, transform: 'none' }], { duration: 380, delay: 80 + fresh++ * 110, easing: ease, fill: 'backwards' });
+      }
       svg.appendChild(g); x += lw;
     });
+    lastGeo = geo;
     cap.textContent = w.cap + ' Esquema ilustrativo, fora de escala.';
+    if (play && !rm && cap.animate) cap.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
   }
-  $$('.wall input').forEach(function (r) { r.addEventListener('change', function () { if (r.checked) drawWall(wallType = r.value); }); });
+  $$('.wall input').forEach(function (r) { r.addEventListener('change', function () { if (r.checked) drawWall(wallType = r.value, true); }); });
   /* a aba Madeira pode começar escondida em telas estreitas; redesenha quando ela aparece */
   tabs.forEach(function (t) { t.addEventListener('click', function () { requestAnimationFrame(function () { drawWall(wallType); }); }); });
   addEventListener('resize', function () { drawWall(wallType); });
@@ -194,7 +205,8 @@
   if (orc) {
     var prev = $('#orcPrev'), go = $('#orcGo'), area = $('#orcArea'), local = $('#orcLocal'), nome = $('#orcNome');
     var pick = function (n) { var c = $('input[name="' + n + '"]:checked', orc); return c ? c.value : ''; };
-    var msg = function () {
+    var box = prev.parentNode;
+    var msg = function (e) {
       var a = parseInt(area.value, 10), ok = a >= 10 && a <= 3000;
       area.setAttribute('aria-invalid', String(area.value !== '' && !ok));
       var t = 'Olá, Casas Eco! ' + (nome.value.trim() ? 'Meu nome é ' + nome.value.trim() + '. ' : '') +
@@ -202,6 +214,8 @@
         (local.value.trim() ? ' Local do terreno: ' + local.value.trim() + '.' : '') + ' Vi o portfólio de vocês no site.';
       prev.textContent = t;
       go.href = 'https://wa.me/5548996754334?text=' + encodeURIComponent(t);
+      /* um toque de verde na caixa a cada escolha confirmada, não a cada letra */
+      if (e && e.type === 'change' && box.animate) box.animate([{ backgroundColor: '#DDEBD6' }, { backgroundColor: '#EEF5EA' }], { duration: 450, easing: 'ease-out' });
     };
     orc.addEventListener('input', msg);
     orc.addEventListener('change', msg);

@@ -220,7 +220,7 @@ h3 { font-size: var(--t-2); }
 .sys-view figure:not(.wall-fig) { margin: 0 0 20px; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg); }
 .sys-view img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .sys-view p { margin: 0 0 .8em; max-width: 52ch; }
-.sys-view [role="tabpanel"]:not([hidden]) { animation: fade .45s ease both; }
+.sys-view [role="tabpanel"]:not([hidden]) { animation: fade .25s ease-out both; }
 .opts { list-style: none; margin: 1.2em 0 0; padding: 0; max-width: 52ch; display: grid; gap: 10px; }
 .opts li { position: relative; padding-left: 22px; }
 .opts li::before { content: ""; position: absolute; left: 0; top: .5em; width: 10px; height: 10px; background: var(--green); }
@@ -338,6 +338,7 @@ h3 { font-size: var(--t-2); }
 .c-wa dd { font-size: var(--t-2); font-weight: 800; font-stretch: var(--narrow); line-height: 1.1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
 .copy { min-height: 44px; padding: 0 14px; background: rgba(255, 255, 255, .12); color: var(--on-panel); border: 0; border-radius: 0; font: 600 var(--t-5)/1 var(--f); cursor: pointer; transition: background-color .2s; }
 @media (hover: hover) { .copy:hover { background: rgba(255, 255, 255, .22); } }
+.copy.is-done, .copy.is-done:hover { background: var(--leaf); color: var(--on-leaf); }
 .contact-list a { display: inline-block; padding-block: 4px; text-decoration: underline; text-decoration-color: var(--leaf); text-decoration-thickness: 2px; }
 .contact-list a:hover { color: var(--leaf); }
 .contact .ctas { grid-column: 1 / span 7; }
@@ -371,6 +372,7 @@ html.lb-open { overflow: hidden; }
 @keyframes settle { from { transform: scale(1.09); } to { transform: none; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slide { from { transform: translateY(32px); } to { transform: none; } }
+@keyframes drop { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
 .hero h1, .hero .sub, .hero .ctas, .hero .facts { animation: rise .9s var(--ease) both; }
 .hero .sub { animation-delay: .1s; }
 .hero .ctas { animation-delay: .2s; }
@@ -385,7 +387,7 @@ html.lb-open { overflow: hidden; }
   .nav { gap: 18px; }
   .btn--bar { display: none; }
   .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; flex-direction: column; gap: 0; background: var(--bg-alt); padding: 6px max(24px, env(safe-area-inset-right, 0px)) 20px max(24px, env(safe-area-inset-left, 0px)); }
-  .nav.open { display: flex; }
+  .nav.open { display: flex; animation: drop .22s var(--ease) both; }
   .nav a { padding: 15px 0; font-size: var(--t-4); }
   .nav a::after { display: none; }
   .nav .nav-cta { display: block; margin-top: 16px; padding: 15px 20px; text-align: center; background: var(--green); color: var(--on-green); }
@@ -443,9 +445,11 @@ html.lb-open { overflow: hidden; }
   .foot-in { flex-direction: column; align-items: flex-start; }
   .contact-list div { grid-template-columns: 1fr; }
 }
+/* movimento reduzido: sai o deslocamento, ficam as trocas de cor e de opacidade que mostram estado */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .btn:hover { transform: none; }
+  .hero h1, .hero .sub, .hero .ctas, .hero .facts, .hero-img img, .slide, .nav.open { animation: none; }
+  .btn:hover, .btn:active, .wall label:hover span, .chips label:hover span, .vplay:hover span, .gal button::after { transform: none; }
+  .gal img { transition: none; }
   .gal button:hover img { transform: none; }
 }

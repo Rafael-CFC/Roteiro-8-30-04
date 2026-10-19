@@ -31,7 +31,10 @@
       { "name": "rise", "value": "translateY(26px) to none, opacity 0 to 1, .9s, staggered .1s", "purpose": "Hero text entrance." },
       { "name": "settle", "value": "scale(1.09) to none, 1.8s", "purpose": "Hero photo settle on load." },
       { "name": "slide", "value": "translateY(32px) to none, view() timeline, entry 0% to 45%", "purpose": "Section parts rise on scroll where scroll timelines are supported." },
-      { "name": "reduced-motion", "value": "animation and transition none", "purpose": "All motion removed under prefers-reduced-motion." }
+      { "name": "wall-assembly", "value": "kept layer translateX to none 320ms; new layers translateX(-28px) and opacity to none 380ms, staggered 110ms, cubic-bezier(.16, 1, .3, 1)", "purpose": "The wall cross-section is built from outside to inside when its type changes." },
+      { "name": "feedback-flash", "value": "background #DDEBD6 to #EEF5EA, 450ms ease-out", "purpose": "Quote preview box confirms each chosen option." },
+      { "name": "menu-drop", "value": "clip-path inset(0 0 100% 0) to inset(0), .22s", "purpose": "Phone menu opens top-down." },
+      { "name": "reduced-motion", "value": "entrance, settle, slide, menu drop and hover lifts off; color and opacity transitions kept", "purpose": "Travel removed under prefers-reduced-motion, state feedback kept." }
     ],
     "breakpoints": [
       { "name": "nav-collapse", "value": "1000px" },
