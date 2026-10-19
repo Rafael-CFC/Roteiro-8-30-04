@@ -7,26 +7,26 @@ related_targets: []
 
 ## Scope
 
-Casas Eco portfolio, single page `index.html`. Visitor mode: Persuade. Full redesign confirmed by the user; content, photos, videos, contacts and facts preserved.
+Casas Eco portfolio, single page `index.html`. Visitor mode: Persuade. Refinement of the incumbent (original) layout after the owner rejected the replacement world. Preserve structure, content, photos, videos and behaviour; recolor to the company's green and white; fix the measured defects; add a WhatsApp quote builder and the wall cross-section.
 
 ## Audience and action
 
-Families building a home or second residence and investors building chalets or a pousada, equal weight, mostly on phones. Action: start a WhatsApp chat. Proof: five real projects with area and deadline, 150+ builds, 20+ years, two real reviews, roof-building videos, the store in Campo Duna, CasaBio partnership.
+Families building a home or second residence and investors building chalets or a pousada, equal weight, mostly on phones. Action: start a WhatsApp chat (now also through a prefilled quote message).
 
 ## Constraints
 
-Static HTML/CSS/JS. Videos compressed to 720p. No invented prices, clients or reviews. The wall cross-section is a schematic and is labelled as such.
+Static HTML/CSS/JS. Videos fixed in place, never pinned or scroll-linked. Only gentle motion: hero entrance, photo settle, section rise on scroll. No invented prices, clients or reviews. The wall cross-section is a schematic and is labelled as such. The quote form sends nothing itself; it only opens WhatsApp with the text.
 
 ## Direction contract
 
-THESIS: the page is the Casas Eco lumber yard in Campo Duna: treated pinus stacked in lots, each lot stencil-stamped; it refuses the eco-builder default of a leafy green hero photo with serif headline and icon cards.
+THESIS: the original Casas Eco portfolio, finished: same composition, recolored to the brand's green and white, with every measured defect fixed; it refuses scroll-jacking, stencil costume and dark-mode drift.
 
-OWN-WORLD: ground in pale sap-wood (#E3E5CC), whole fields of autoclave-treated pinus green-gold (#A9A35E) and deep mata green (#12301F) as ink and dark fields, one marking-crayon yellow (#F2C230) only on the WhatsApp action. Display in Big Shoulders Stencil Display at monument scale; text in Schibsted Grotesk. Square corners, square buttons, no rules, no shadows; surfaces split by tone steps like boards in a stack.
+OWN-WORLD: white ground, pale leaf (#EEF5EA) alternating bands, forest green (#1F4A1C) panels with white text, leaf green (#2D7A28) on every action, light leaf (#9BD27A) for the action and accents on panels. One family, Archivo: condensed at 64 to 70% for headings and numbers, normal width for text. Square buttons, roof-angle cuts, no hairlines, no shadows.
 
-STORY: the visitor sees the name stamped like a lot mark sliding over a real house, learns builder and materials store are one yard, walks the lots (each project with area, place and days), opens the roof videos, builds a wall in cross-section, reads two clients, and taps WhatsApp.
+STORY: the visitor sees a real house and the tagline, learns the company builds and sells materials in Garopaba, watches the roof videos, picks a wall and sees its layers, reads each project with area and deadline beside its video, browses the photos, reads two clients, builds a quote message and taps WhatsApp.
 
-FIRST VIEWPORT: wordmark logo centred top, "Projetos" left, "Contato" right; "CASAS ECO" in stencil at about 16vw sliding left across the band at 38% height, over a large square photograph of the hero house (about 44vw on desktop, 62vw on phone), letters turning pale where they cross it; under it one sentence "Casas de madeira e alvenaria em Garopaba, prontas de 30 a 150 dias." and the fact "Mais de 150 obras em 20 anos"; bottom row: "SC-434, km 3, Campo Duna" left, yellow square button "Chamar no WhatsApp" right.
+FIRST VIEWPORT: white logo bar with five links and a green WhatsApp button; forest-green panel at left with the two-line tagline, supporting line, two actions and three fact chips; the hero house photo at right behind the roof-angle cut.
 
-FORM: name-as-monument from taste-skill (seed 1091071425) inside the Pátio de madeira world, candidate 4 of 7 on my ordered list; seed: 7f72fa998fd381b7. Signature interaction: the wall builder (simples / dupla com lã de PET / dupla com drywall) redrawing the layered section. Motion grammar: the stamped name slides at constant speed; project titles tear and rejoin at the seam on scroll; parts of each section rise in on entry.
+FORM: refinement of the incumbent layout; no new world, so no concept roll for this pass; the earlier roll is superseded (seed: 7f72fa998fd381b7). Signature interaction: the wall cross-section; second: the quote message builder. Motion grammar: entrance rise in the hero, slow settle on the hero photo, scroll-timeline rise on section parts.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

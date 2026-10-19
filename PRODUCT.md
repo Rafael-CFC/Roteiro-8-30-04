@@ -39,6 +39,9 @@ Visitors compare builders by looking at finished houses and how fast they were d
 - Name: Casas Eco. Logo at `img/logo.png` (dark green mark).
 - Tagline in use: "Casas especiais em madeira e alvenaria." / "Sua casa, seu estilo, seu futuro. A natureza faz parte."
 - Instagram @casasecomadeiras, site casaseco.com.br.
+- Colors: green and white, the company's own (the logo's leaf green and its dark olive). Confirmed by the owner.
+- Layout: the original portfolio layout (full-bleed hero split by a roof-angle cut, alternating bands, projects with their videos beside the text) is the preferred structure. A full replacement world ("Pátio de madeira", stencil type, sticky project stages) was tried and rejected as feeling stuck ("travado").
+- Videos stay fixed in the layout. No scroll-linked or pinned motion on project videos or photos.
 
 ## Evidence on Hand
 
