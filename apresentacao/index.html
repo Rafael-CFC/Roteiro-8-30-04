@@ -59,6 +59,12 @@ p { margin: 0; }
 .cap { margin-top: 8px; font-size: 12px; font-weight: 500; color: var(--muted); }
 .dark .cap { color: var(--on-panel-muted); }
 .grow { flex: 1; }
+/* galeria: 2 colunas, linhas de 64px; w = larga, t = vertical, l = deitada */
+.gal { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 64px; gap: 8px; grid-auto-flow: dense; }
+.gal img { width: 100%; height: 100%; object-fit: cover; }
+.gal .w { grid-column: span 2; grid-row: span 4; }
+.gal .t { grid-row: span 4; }
+.gal .l { grid-row: span 2; }
 </style>
 </head>
 <body>
@@ -84,6 +90,7 @@ p { margin: 0; }
     <ul class="list">
       <li>Empresa consolidada, com sede e estrutura própria em Garopaba/SC.</li>
       <li>Madeira ecologicamente correta: pinus tratado autoclavado.</li>
+      <li>Parede simples ou parede dupla com revestimento térmico.</li>
       <li>Execução de projetos mistos, em madeira e alvenaria.</li>
     </ul>
   </div>
@@ -198,6 +205,25 @@ p { margin: 0; }
   <div class="foot"><span><b>Casas Eco</b></span><span>09</span></div>
 </section>
 
+<!-- da planta à casa pronta -->
+<section class="pg">
+  <div class="pad" style="padding-top:52px">
+    <p class="kicker">Do projeto à obra</p>
+    <h3>Da planta à casa pronta</h3>
+    <p class="lead" style="margin-top:8px">Residência de 9,00 x 8,50 m com deck de 27 m², do desenho à entrega.</p>
+  </div>
+  <div class="pad" style="margin-top:22px"><img src="img/album/026.png" style="width:100%;height:300px;object-fit:contain;background:#fff" alt=""></div>
+  <div class="pad" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+    <div><img src="img/album/027.jpg" style="width:100%;height:150px;object-fit:cover" alt=""><p class="cap">Projeto em 3D</p></div>
+    <div><img src="../img/g043.jpg" style="width:100%;height:150px;object-fit:cover" alt=""><p class="cap">Casa pronta</p></div>
+  </div>
+  <div class="pad">
+    <dl class="dl" style="margin-top:18px"><div><dt>Cozinha e sala</dt><dd>20,20 m²</dd></div><div><dt>Quarto</dt><dd>10,83 m²</dd></div><div><dt>Lavanderia</dt><dd>8,79 m²</dd></div><div><dt>Deck</dt><dd>27 m²</dd></div></dl>
+    <p class="body" style="margin-top:16px;font-weight:600;color:var(--green)">Sustentável. Durável. Confortável.</p>
+  </div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>10</span></div>
+</section>
+
 <!-- 10. como construímos -->
 <section class="pg alt">
   <div class="pad" style="padding-top:56px">
@@ -219,24 +245,59 @@ p { margin: 0; }
     </ul>
     <a class="btn btn--line" style="margin-top:22px" href="https://rafael-cfc.github.io/Roteiro-8-30-04/#como-construimos"><i></i>Ver os vídeos</a>
   </div>
-  <div class="foot"><span><b>Casas Eco</b></span><span>10</span></div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>11</span></div>
 </section>
 
-<!-- 11. galeria -->
+<!-- galeria (fotos do álbum da Casas Eco) -->
 <section class="pg">
   <div class="pad" style="padding-top:56px">
     <h2>Portfólio de obras</h2>
   </div>
-  <div class="pad" style="display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:126px;gap:8px;margin-top:26px">
-    <img src="../img/g037.jpg" style="grid-column:span 2;grid-row:span 2;width:100%;height:100%;object-fit:cover" alt="">
-    <img src="../img/g066.jpg" style="grid-row:span 2;width:100%;height:100%;object-fit:cover" alt="">
-    <img src="../img/g054.jpg" style="width:100%;height:100%;object-fit:cover" alt="">
-    <img src="../img/g057.jpg" style="width:100%;height:100%;object-fit:cover" alt="">
-    <img src="../img/g043.jpg" style="width:100%;height:100%;object-fit:cover" alt="">
-    <img src="../img/g068.jpg" style="width:100%;height:100%;object-fit:cover" alt="">
+  <div class="pad gal" style="margin-top:26px">
+    <img class="w" src="img/album/029.jpg" alt="">
+    <img class="t" src="img/album/058.jpg" alt="">
+    <img class="l" src="img/album/046.jpg" alt="">
+    <img class="l" src="img/album/047.jpg" alt="">
+    <img class="l" src="img/album/048.jpg" alt="">
+    <img class="l" src="img/album/049.jpg" alt="">
   </div>
-  <div class="pad"><a class="btn btn--line" style="margin-top:22px" href="https://rafael-cfc.github.io/Roteiro-8-30-04/#obras">Ver as 14 fotos</a></div>
-  <div class="foot"><span><b>Casas Eco</b></span><span>11</span></div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>12</span></div>
+</section>
+
+<section class="pg dark">
+  <div class="pad gal" style="margin-top:56px;grid-auto-rows:74px">
+    <img class="w" src="img/album/032.jpg" alt="">
+    <img class="t" src="img/album/059.jpg" alt="">
+    <img class="l" src="img/album/036.jpg" alt="">
+    <img class="l" src="img/album/037.jpg" alt="">
+    <img class="l" src="img/album/053.jpg" alt="">
+    <img class="l" src="img/album/054.jpg" alt="">
+  </div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>13</span></div>
+</section>
+
+<section class="pg">
+  <div class="pad gal" style="margin-top:56px;grid-auto-rows:74px">
+    <img class="w" src="img/album/031.jpg" alt="">
+    <img class="t" src="img/album/041.jpg" alt="">
+    <img class="l" src="img/album/055.jpg" alt="">
+    <img class="l" src="img/album/060.jpg" alt="">
+    <img class="l" src="img/album/063.jpg" alt="">
+    <img class="l" src="img/album/066.jpg" alt="">
+  </div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>14</span></div>
+</section>
+
+<section class="pg dark">
+  <div class="pad gal" style="margin-top:56px;grid-auto-rows:64px">
+    <img class="w" src="img/album/024.jpg" alt="">
+    <img class="t" src="img/album/045.jpg" alt="">
+    <img class="t" src="img/album/065.jpg" alt="">
+    <img class="l" src="img/album/030.jpg" alt="">
+    <img class="l" src="img/album/040.jpg" alt="">
+  </div>
+  <div class="pad"><a class="btn btn--line" style="margin-top:20px" href="https://www.instagram.com/casasecomadeiras/">Mais obras no Instagram</a></div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>15</span></div>
 </section>
 
 <!-- 12. casabio -->
@@ -258,7 +319,7 @@ p { margin: 0; }
     </ul>
     <p class="body">Entregamos tudo do projeto à instalação completa, com acompanhamento técnico e responsabilidade ambiental.</p>
   </div>
-  <div class="foot"><span><b>Casas Eco</b></span><span>12</span></div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>16</span></div>
 </section>
 
 <!-- 13. clientes -->
@@ -276,7 +337,7 @@ p { margin: 0; }
       <figcaption style="margin-top:16px;font-size:14px;color:var(--on-panel-muted)"><b style="color:#fff;font-size:16px;display:block">Eduardo Frigeri</b>Imbituba</figcaption>
     </figure>
   </div>
-  <div class="foot"><span><b>Casas Eco</b></span><span>13</span></div>
+  <div class="foot"><span><b>Casas Eco</b></span><span>17</span></div>
 </section>
 
 <!-- 14. contato -->
@@ -298,7 +359,7 @@ p { margin: 0; }
   </div>
   <div class="grow"></div>
   <img class="cover-img" src="../img/g060.jpg" style="height:190px" alt="">
-  <div class="foot" style="color:#fff"><span><b>Casas Eco</b></span><span>14</span></div>
+  <div class="foot" style="color:#fff"><span><b>Casas Eco</b></span><span>18</span></div>
 </section>
 
 </body>
