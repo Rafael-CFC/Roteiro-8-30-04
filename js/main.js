@@ -47,6 +47,25 @@
     secs.forEach(function (s) { if (s) so.observe(s); });
   }
 
+  /* entrada ao rolar: títulos, textos, números e listas sobem quando chegam na tela.
+     Irmãos entram em sequência, 80ms um depois do outro. Vídeos e fotos das obras ficam parados. */
+  if ('IntersectionObserver' in window) {
+    var RV = '.band h2, .band .lead, .band .prose, .points li, .opts li, .stat, .quote, .head-copy, .sys, .gal-head, '
+      + '.proj-copy > *, .bio-copy > *, .orc-head > *, .orc .field, .orc fieldset, .contact-list > div, .contact .ctas, .quick-in > *, .ph, .bio-ph';
+    var seen = [];
+    $$(RV).forEach(function (n) {
+      if (n.closest('.hero') || seen.indexOf(n) > -1) return; seen.push(n);
+      var sib = [].filter.call(n.parentNode.children, function (c) { return c.matches(RV); });
+      n.style.setProperty('--d', Math.min(sib.indexOf(n), 5) * .08 + 's');
+      n.classList.add('rv');
+    });
+    var ro2 = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { ro2.unobserve(e.target); e.target.classList.add('is-in'); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
+    document.documentElement.classList.add('js');
+    seen.forEach(function (n) { ro2.observe(n); });
+  }
+
   /* contadores */
   function count(el) {
     var to = +el.getAttribute('data-to'), t0 = null;

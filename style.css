@@ -242,7 +242,7 @@ h3 { font-size: var(--t-2); }
 .sys-view figure:not(.wall-fig) { margin: 0 0 20px; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg); }
 .sys-view img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .sys-view p { margin: 0 0 .8em; max-width: 52ch; }
-.sys-view [role="tabpanel"]:not([hidden]) { animation: fade .18s ease-out both; }
+.sys-view [role="tabpanel"]:not([hidden]) { animation: rise .45s var(--ease) both; }
 .sys-view [role="tabpanel"].instant { animation: none; }
 .opts { list-style: none; margin: 1.2em 0 0; padding: 0; max-width: 52ch; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 .opts li { position: relative; padding-left: 22px; }
@@ -298,8 +298,8 @@ h3 { font-size: var(--t-2); }
   height: min(calc(var(--r) * 1px), calc(var(--r) * .0801vw));
   padding: 0; border: 0; display: block; overflow: hidden; background: var(--tone); cursor: zoom-in; position: relative;
 }
-.gal img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s var(--ease); }
-@media (hover: hover) and (pointer: fine) { .gal button:hover img { transform: scale(1.04); } }
+.gal img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+@media (hover: hover) and (pointer: fine) { .gal button:hover img { transform: scale(1.05); } }
 .gal button:focus-visible { outline-offset: -4px; }
 
 /* ---------- diferenciais ---------- */
@@ -397,13 +397,19 @@ html.lb-open { overflow: hidden; }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slide { from { transform: translateY(32px); } to { transform: none; } }
 @keyframes drop { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
-.hero h1, .hero .sub, .hero .ctas { animation: rise .7s var(--ease) both; }
-.hero .sub { animation-delay: .07s; }
-.hero .ctas { animation-delay: .14s; }
+.hero h1, .hero .sub, .hero .ctas { animation: rise .9s var(--ease) both; }
+.hero .sub { animation-delay: .1s; }
+.hero .ctas { animation-delay: .2s; }
 .hero-img img { animation: settle 1.8s var(--ease) both; }
-@supports (animation-timeline: view()) {
-  .slide { animation: slide linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
-}
+/* entrada ao rolar: o texto sobe e aparece quando chega na tela, uma vez só, em qualquer navegador.
+   Vídeos e fotos das obras ficam parados. Sem JS, tudo aparece normal. */
+.js .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
+.js .rv.is-in { opacity: 1; transform: none; }
+.js .ph.rv { transform: translateY(40px) scale(.98); }
+.js .ph.rv.is-in { transform: none; }
+.js .stat.rv { transform: translateY(40px); }
+.js .stat.rv.is-in { transform: none; }
+@media print { .js .rv { opacity: 1; transform: none; } }
 
 /* ---------- tablet e celular ---------- */
 @media (max-width: 1000px) {
@@ -470,7 +476,9 @@ html.lb-open { overflow: hidden; }
 /* movimento reduzido: sai o deslocamento, ficam as trocas de cor e de opacidade que mostram estado */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero h1, .hero .sub, .hero .ctas, .hero-img img, .slide, .nav.open { animation: none; }
+  .hero h1, .hero .sub, .hero .ctas, .hero-img img, .nav.open { animation: none; }
+  .sys-view [role="tabpanel"]:not([hidden]) { animation: fade .3s ease both; }
+  .js .rv, .js .ph.rv, .js .stat.rv { transform: none; transition: opacity .6s ease; }
   .btn:hover, .wall label:hover span, .chips label:hover span, .vplay:hover span, .brand img, .bar.is-small .brand img { transform: none; }
   .gal img { transition: none; }
   .gal button:hover img { transform: none; }

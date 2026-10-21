@@ -135,7 +135,7 @@ A builder's portfolio that reads like the houses it shows: real photographs and 
 
 One type family, Archivo, does all the work by changing width: condensed (62 to 70%) and heavy for headings, project data and the big numbers; normal width for reading text. Corners are square throughout. Density is calm on the band level (generous vertical padding) and compact inside components (tight chips, square buttons, stacked data).
 
-Motion is gentle: the hero rises, the hero photo settles, section parts rise on scroll where scroll timelines exist. The one authored moment is the wall cross-section assembling from outside to inside. Controls answer with color: the quote preview box flashes leaf tone on each confirmed choice, the copy button turns light leaf when the number is copied, the phone menu opens with a quick top-down clip reveal. Videos and photos stay fixed in the layout; nothing is pinned or scroll-linked.
+Motion is gentle: the hero rises, the hero photo settles, headings, text, numbers, lists and the two showroom photos rise 28px and fade in once as they reach the screen (IntersectionObserver, so it works in every browser, Safari included), siblings 80ms apart; system tabs rise in 450ms; gallery photos zoom slowly (800ms) on mouse hover. The one authored moment is the wall cross-section assembling from outside to inside. Controls answer with color: the quote preview box flashes leaf tone on each confirmed choice, the copy button turns light leaf when the number is copied, the phone menu opens with a quick top-down clip reveal. Videos and photos stay fixed in the layout; nothing is pinned or scroll-linked.
 
 **Key Characteristics:**
 - Green and white only: white ground, pale-leaf alternate bands, forest-green panels.
