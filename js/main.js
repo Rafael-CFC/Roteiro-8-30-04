@@ -15,9 +15,18 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (es) { bar.classList.toggle('is-small', !es[0].isIntersecting); }).observe($('#topMark'));
   }
+  /* no iOS, :active só acende no toque se a página escuta touchstart */
+  document.addEventListener('touchstart', function () {}, { passive: true });
+  /* o menu fecha pelo mesmo caminho por onde abriu, com a curva espelhada e mais rápido */
+  var menuAnim = null;
   function setMenu(o) {
-    nv.classList.toggle('open', o); mb.setAttribute('aria-expanded', String(o));
+    if (menuAnim) { menuAnim.cancel(); menuAnim = null; }
+    mb.setAttribute('aria-expanded', String(o));
     mb.classList.toggle('is-open', o); mt.textContent = o ? 'Fechar' : 'Menu';
+    if (!o && nv.classList.contains('open') && !rm && nv.animate && byPointer() && getComputedStyle(mb).display !== 'none') {
+      menuAnim = nv.animate([{ clipPath: 'inset(0 0 0 0)' }, { clipPath: 'inset(0 0 100% 0)' }], { duration: 160, easing: 'cubic-bezier(.68, 0, .77, 0)' });
+      menuAnim.onfinish = function () { nv.classList.remove('open'); menuAnim = null; };
+    } else nv.classList.toggle('open', o);
   }
   mb.addEventListener('click', function () { setMenu(!nv.classList.contains('open')); });
   $$('a', nv).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
@@ -130,20 +139,89 @@
     b.addEventListener('click', function () { opener = b; show(i); if (lb.showModal) lb.showModal(); document.documentElement.classList.add('lb-open'); });
   });
   function closeLb() { if (lb.open) lb.close(); }
-  lb.addEventListener('close', function () { document.documentElement.classList.remove('lb-open'); if (opener) opener.focus({ preventScroll: true }); });
-  $('#lbPrev').addEventListener('click', function () { show(cur - 1, -1); });
-  $('#lbNext').addEventListener('click', function () { show(cur + 1, 1); });
+  lb.addEventListener('close', function () { settle(); document.documentElement.classList.remove('lb-open'); if (opener) opener.focus({ preventScroll: true }); });
+  $('#lbPrev').addEventListener('click', function () { settle(); show(cur - 1, -1); });
+  $('#lbNext').addEventListener('click', function () { settle(); show(cur + 1, 1); });
   $('#lbClose').addEventListener('click', closeLb);
   lb.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') show(cur - 1); else if (e.key === 'ArrowRight') show(cur + 1);
   });
   stage.addEventListener('click', function (e) { if (e.target === stage) closeLb(); });
-  var sx = null, sy = null;
-  stage.addEventListener('touchstart', function (e) { var t = e.changedTouches[0]; sx = t.clientX; sy = t.clientY; }, { passive: true });
-  stage.addEventListener('touchend', function (e) {
-    if (sx === null) return; var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; sx = null;
-    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) show(cur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
-  }, { passive: true });
+
+  /* arrastar a foto: ela acompanha o dedo 1:1; ao soltar, a velocidade decide o destino.
+     De lado troca de foto; para baixo fecha; solta no meio do caminho e ela volta.
+     Pode ser pega de novo a qualquer momento, e continua de onde está. */
+  /* mola criticamente amortecida (sem quique): parte da posição e da velocidade atuais */
+  function spring(from, to, v0, response, onUpdate, onDone) {
+    var w = 2 * Math.PI / response, A = from - to, B = v0 + w * A, t0 = performance.now(), id;
+    function step(now) {
+      var t = (now - t0) / 1000, e = Math.exp(-w * t), x = (A + B * t) * e, v = (B - w * (A + B * t)) * e;
+      if (Math.abs(x) < .5 && Math.abs(v) < 10) { onUpdate(to); if (onDone) onDone(); return; }
+      onUpdate(to + x); id = requestAnimationFrame(step);
+    }
+    id = requestAnimationFrame(step);
+    return function () { cancelAnimationFrame(id); };
+  }
+  /* onde o gesto vai parar, como a rolagem desacelerando (fórmula da Apple) */
+  function project(v) { return v / 1000 * .998 / (1 - .998); }
+  /* passou do limite: segue cada vez menos, em vez de travar */
+  function rubber(o, d) { return o * d * .55 / (d + .55 * o); }
+  var pos = { x: 0, y: 0 }, stopA = null, drag = null;
+  function paint() {
+    var H = stage.clientHeight || innerHeight, k = Math.min(Math.abs(pos.y) / H, 1);
+    lbi.style.transform = pos.x || pos.y ? 'translate3d(' + pos.x + 'px,' + pos.y + 'px,0) scale(' + (1 - k * .2) + ')' : '';
+    lbi.style.opacity = pos.y ? String(1 - k * .7) : '';
+  }
+  function halt() { if (stopA) stopA(); stopA = null; }
+  function settle() { halt(); drag = null; pos.x = pos.y = 0; paint(); lbi.classList.remove('is-drag'); }
+  function setX(x) { pos.x = x; paint(); }
+  function setY(y) { pos.y = y; paint(); }
+  lbi.addEventListener('pointerdown', function (e) {
+    if (e.button > 0 || (e.pointerType === 'touch' && !e.isPrimary)) return;
+    halt();
+    try { lbi.setPointerCapture(e.pointerId); } catch (err) {}
+    drag = { id: e.pointerId, ox: e.clientX, oy: e.clientY, sx: e.clientX - pos.x, sy: e.clientY - pos.y,
+      axis: pos.x ? 'x' : pos.y ? 'y' : null, hist: [[e.clientX, e.clientY, e.timeStamp]] };
+    if (drag.axis) lbi.classList.add('is-drag');
+  });
+  lbi.addEventListener('pointermove', function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (!drag.axis) {
+      var dx = e.clientX - drag.ox, dy = e.clientY - drag.oy;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 10) return;
+      drag.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'; lbi.classList.add('is-drag');
+    }
+    drag.hist.push([e.clientX, e.clientY, e.timeStamp]); if (drag.hist.length > 6) drag.hist.shift();
+    if (drag.axis === 'x') setX(e.clientX - drag.sx);
+    else { var y = e.clientY - drag.sy; setY(y < 0 ? -rubber(-y, stage.clientHeight) : y); }
+  });
+  function release(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var d = drag; drag = null; lbi.classList.remove('is-drag');
+    if (!d.axis) return;
+    var h = d.hist, a = h[0], b = h[h.length - 1], dt = Math.max((b[2] - a[2]) / 1000, .016);
+    var vx = (b[0] - a[0]) / dt, vy = (b[1] - a[1]) / dt;
+    if (e.timeStamp - b[2] > 100 || e.type === 'pointercancel') vx = vy = 0;
+    if (d.axis === 'x') {
+      var W = stage.clientWidth || innerWidth, end = pos.x + project(vx);
+      if (Math.abs(end) > W * .35 && items.length > 1) {
+        var dir = end < 0 ? 1 : -1;
+        if (rm) { show(cur + dir); setX(0); return; }
+        stopA = spring(pos.x, -dir * W, vx, .3, setX, function () {
+          show(cur + dir); setX(dir * W * .4);
+          stopA = spring(pos.x, 0, vx * .4, .35, setX, function () { stopA = null; });
+        });
+      } else stopA = spring(pos.x, 0, vx, .3, setX, function () { stopA = null; });
+    } else {
+      var H = stage.clientHeight || innerHeight;
+      if (pos.y + project(vy) > H * .25) {
+        if (rm) { closeLb(); return; }
+        stopA = spring(pos.y, H, Math.max(vy, 0), .3, setY, function () { stopA = null; closeLb(); });
+      } else stopA = spring(pos.y, 0, vy, .3, setY, function () { stopA = null; });
+    }
+  }
+  lbi.addEventListener('pointerup', release);
+  lbi.addEventListener('pointercancel', release);
 
   /* copiar número */
   var cb = $('#copyWa');

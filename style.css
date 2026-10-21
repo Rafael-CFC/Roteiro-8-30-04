@@ -111,6 +111,8 @@ h3 { font-size: var(--t-2); }
 }
 @media (hover: hover) and (pointer: fine) { .btn:hover { transform: translateY(-2px); } }
 .btn:active { transform: scale(.97); }
+/* o aperto responde em 100ms; a volta usa o tempo normal */
+.btn:active, .menu-btn:active, .lb button:active, .copy:active, .sys button:active, .vplay:active span, .wall label:active span, .chips label:active span { transition-duration: .1s; }
 .btn--solid { background: var(--green); color: var(--on-green); }
 .btn--solid:hover { background: var(--green-hover); }
 .btn--line { border-color: currentColor; color: inherit; }
@@ -129,6 +131,15 @@ h3 { font-size: var(--t-2); }
 .top-mark { position: absolute; top: 0; left: 0; width: 1px; height: 40px; pointer-events: none; }
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--bg); color: var(--ink); transition: background-color .25s; }
 .bar.is-small { background: var(--bg-alt); }
+/* barra como material translúcido: as fotos passam por baixo, desfocadas; sem suporte, fica sólida */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .bar { background: rgba(255, 255, 255, .78); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); }
+  .bar.is-small { background: rgba(238, 245, 234, .8); }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .bar, .bar.is-small { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .bar.is-small { background: var(--bg-alt); }
+}
 .bar-in { display: flex; align-items: center; gap: 28px; height: 68px; }
 .brand { display: flex; align-items: center; min-height: 44px; line-height: 0; }
 .brand img { height: 48px; width: auto; transform-origin: 0 50%; transition: transform .2s var(--ease); }
@@ -364,8 +375,9 @@ h3 { font-size: var(--t-2); }
 .lb { position: fixed; inset: 0; width: 100vw; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--panel); color: var(--on-panel); overflow: hidden; }
 .lb::backdrop { background: var(--panel); }
 .lb[open] { animation: fade .25s ease both; }
-.lb-stage { position: absolute; inset: 0; display: grid; place-items: center; padding: calc(env(safe-area-inset-top, 0px) + 64px) max(76px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 64px) max(76px, env(safe-area-inset-left, 0px)); touch-action: pan-y; }
-.lb-stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+.lb-stage { position: absolute; inset: 0; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; padding: calc(env(safe-area-inset-top, 0px) + 64px) max(76px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 64px) max(76px, env(safe-area-inset-left, 0px)); touch-action: pinch-zoom; }
+.lb-stage img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; user-select: none; -webkit-user-drag: none; touch-action: pinch-zoom; cursor: grab; will-change: transform; }
+.lb-stage img.is-drag { cursor: grabbing; }
 .lb button { font: 600 var(--t-5)/1 var(--f); color: var(--ink); background: var(--bg); border: 0; border-radius: 0; cursor: pointer; transition: background-color .2s ease, transform .16s var(--ease); }
 @media (hover: hover) and (pointer: fine) { .lb button:hover { background: var(--leaf); } }
 .lb button:active { transform: scale(.95); }

@@ -203,7 +203,7 @@ Breakpoints: at 1000px the nav collapses to a menu button with a pale-leaf drop-
 
 ## Elevation & Depth
 
-The system is flat. There are no shadows anywhere. Depth is conveyed by tonal bands (white, pale leaf, forest), by the roof-angle cuts that let one band overlap the one before, and by stepped figure offsets. On forest panels, small surfaces use translucent white fills (10 to 22%) rather than a raised layer.
+The system is flat. There are no shadows anywhere. Depth is conveyed by tonal bands (white, pale leaf, forest), by the roof-angle cuts that let one band overlap the one before, and by stepped figure offsets. On forest panels, small surfaces use translucent white fills (10 to 22%) rather than a raised layer. The one material is the sticky bar: white at 78% (pale leaf at 80% once scrolled) with a 20px backdrop blur, so photos pass under it softened; it turns solid where blur is unsupported or the visitor asks for reduced transparency or more contrast.
 
 ### Named Rules
 **The No Shadow Rule.** Nothing casts a shadow. A surface stands out by tone, never by lift.
@@ -241,7 +241,10 @@ Square, confident and few: one fill, one outline.
 
 ### Navigation
 - **Style:** white sticky bar with the logo at left and five label-size links in moss muted at right, plus the bar button. Hover and current link turn ink and grow a 2px leaf-green underline from the left. A 3px leaf-green progress bar tracks scroll at the very top, driven by a CSS scroll timeline (absent where the browser lacks it); the bar tints and the logo shrinks when an invisible 40px top marker leaves the viewport (IntersectionObserver, no scroll listener).
-- **Mobile:** a pale-leaf "menu" button with a two-line icon that crosses to an X; the drop-down is a pale-leaf sheet with full-size links and a full-width solid WhatsApp action.
+- **Mobile:** a pale-leaf "menu" button with a two-line icon that crosses to an X; the drop-down is a pale-leaf sheet with full-size links and a full-width solid WhatsApp action. The sheet unrolls from the bar in 220ms and, when closed by pointer, rolls back up the same path in 160ms on the mirrored curve; keyboard closes instantly.
+
+### Photo Lightbox
+Forest full-screen dialog. The photo follows the finger or mouse 1:1 after 10px of travel and locks to the first axis. On release, the gesture velocity is projected forward (Apple's decay, rate 0.998): past 35% of the width it changes photo, sliding out while the next slides in on a critically damped spring (response 0.3s, no bounce) that starts from the release velocity; downward past 25% of the height it closes, shrinking and fading as it goes; anywhere else it springs home. Upward drag rubber-bands. The photo can be grabbed again mid-flight and continues from where it is. Arrows and keys stay; reduced motion keeps the 1:1 drag and swaps the springs for an instant change.
 
 ### System Tabs
 Large condensed title-voice tabs stacked in a sticky column (a wrapping row on phones). At rest moss muted on transparent; hover ink on leaf tone; selected white on leaf green.
